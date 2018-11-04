@@ -15,8 +15,8 @@ namespace WPFGame.World
             GameEntities = new List<GameEntity>();
             GameTimer = new Stopwatch();
         }
-        public List<GameEntity> GameEntities { get; set; }
 
+        public List<GameEntity> GameEntities { get; set; }
         public Stopwatch GameTimer { get;}
 
         public void AddEntity(GameEntity entity)
@@ -38,6 +38,7 @@ namespace WPFGame.World
         {
             GameTimer.Start();
         }
+
         public void GameTick()
         {
             foreach (var entity in GameEntities)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFGame.Entities;
 using WPFGame.GameEntities;
 using WPFGame.World;
 
@@ -26,6 +27,7 @@ namespace WPFGame
         WriteableBitmap writeableBmp;
         GameWorld world;
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,11 +41,11 @@ namespace WPFGame
             ViewPort.Source = writeableBmp;
             CreateWorld();
             world.StartTimer();
-            CompositionTarget.Rendering += CompositionTarget_Rendering1; ;
+            CompositionTarget.Rendering += CompositionTarget_Rendering;
 
         }
 
-        private void CompositionTarget_Rendering1(object sender, EventArgs e)
+        private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
             world.GameTick();
             writeableBmp.Clear();
@@ -53,22 +55,17 @@ namespace WPFGame
                 entity.Draw(writeableBmp);
             }
         }
-
-        private void CompositionTarget_Rendering(object sender, RoutedEventArgs e)
-        {
-            world.GameTick();
-
-            writeableBmp.Clear();
-            foreach(GameEntity entity in world.GameEntities)
-            {
-                entity.Draw(writeableBmp);
-            }
-        }
-
+      
         private void CreateWorld()
         {
             world = new GameWorld();
 
+            var character = new Character()
+            {
+                Position = new System.Numerics.Vector2(400, 500) 
+            };
+
+            world.AddEntity(character);
         }
 
 

@@ -17,8 +17,13 @@ namespace WPFGame.GameEntities
         //Velocity of game entity in pixels per second.
         public Vector2 Velocity { get; set; }
 
-        //Contains game logic; milliseconds passed is how much time has passed since last exicution.
+        //Contains game logic; milliseconds passed is how much time has passed since last execution.
         public virtual void GameTick(float millisecondsPassed)
+        {
+             
+        }
+
+        public virtual void move()
         {
 
         }
@@ -28,6 +33,5 @@ namespace WPFGame.GameEntities
         {
 
         }
-
     }
 }
