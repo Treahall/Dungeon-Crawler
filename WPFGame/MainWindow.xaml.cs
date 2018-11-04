@@ -45,7 +45,13 @@ namespace WPFGame
 
         private void CompositionTarget_Rendering1(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            world.GameTick();
+            writeableBmp.Clear();
+
+            foreach(GameEntity entity in world.GameEntities)
+            {
+                entity.Draw(writeableBmp);
+            }
         }
 
         private void CompositionTarget_Rendering(object sender, RoutedEventArgs e)
@@ -61,6 +67,7 @@ namespace WPFGame
 
         private void CreateWorld()
         {
+            world = new GameWorld();
 
         }
 
