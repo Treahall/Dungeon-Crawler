@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -14,8 +15,10 @@ namespace WPFGame.Entities
     {
         public override void Draw(WriteableBitmap surface)
         {
-
-            surface.FillEllipse((int)Position.X, (int)Position.Y, (int)(Position.X + 10), (int)(Position.Y + 10), Colors.Blue);
+            BitmapImage img = new BitmapImage(new Uri("C:\\Users\\Trever\\source\\repos\\WPFGame\\WPFGame\\Entities\\34.png", UriKind.Relative));
+            WriteableBitmap bm = new WriteableBitmap(img);
+            surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(200, 200)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            
             base.Draw(surface);
         }
 
