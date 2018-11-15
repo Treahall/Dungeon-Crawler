@@ -15,9 +15,9 @@ namespace WPFGame.Entities
     {
         public override void Draw(WriteableBitmap surface)
         {
-            BitmapImage img = new BitmapImage(new Uri("C:\\Users\\Trever\\source\\repos\\WPFGame\\WPFGame\\Entities\\34.png", UriKind.Relative));
+            BitmapImage img = new BitmapImage(new Uri("../../VisualAssets/Actors/Player_Sprites/Idle/PlayerIdle_3.png", UriKind.Relative));
             WriteableBitmap bm = new WriteableBitmap(img);
-            surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(200, 200)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(100, 100)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
             
             base.Draw(surface);
         }
