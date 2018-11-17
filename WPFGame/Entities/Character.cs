@@ -26,7 +26,7 @@ namespace WPFGame.Entities
             BitmapImage img = new BitmapImage(new Uri("../../VisualAssets/Actors/Player_Sprites/Movement/Run/Right/PlayerRunR_0.png", UriKind.Relative));
             WriteableBitmap bm = new WriteableBitmap(img);
             surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(75, 75)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
-            
+
             base.Draw(surface);
         }
 
