@@ -18,6 +18,9 @@ namespace WPFGame.Entities
         int health;
         int floor = 400;
         int maxspeed = 240;
+
+        //Make lists for images
+
         public override void Draw(WriteableBitmap surface)
         {
             BitmapImage img = new BitmapImage(new Uri("../../VisualAssets/Actors/Player_Sprites/Movement/Run/Right/PlayerRunR_0.png", UriKind.Relative));
