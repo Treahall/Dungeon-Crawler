@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Character.cs" />
     <Compile Include="World\GameWorld.cs" />
+    <Compile Include="World\Stage.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,6 +134,9 @@
     <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_3.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_4.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Tiles\floor_light.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
