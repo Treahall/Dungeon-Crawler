@@ -62,7 +62,7 @@ namespace WPFGame
 
             var character = new Character()
             {
-                Position = new System.Numerics.Vector2(400, 250) 
+                Position = new System.Numerics.Vector2(500, 400) 
             };
 
             world.AddEntity(character);

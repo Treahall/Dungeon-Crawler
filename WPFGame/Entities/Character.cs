@@ -16,12 +16,13 @@ namespace WPFGame.Entities
     {
         
         int health;
+        int floor = 400;
         int maxspeed = 240;
         public override void Draw(WriteableBitmap surface)
         {
-            BitmapImage img = new BitmapImage(new Uri("../../VisualAssets/Actors/Player_Sprites/Idle/PlayerIdle_3.png", UriKind.Relative));
+            BitmapImage img = new BitmapImage(new Uri("../../VisualAssets/Actors/Player_Sprites/Movement/Run/Right/PlayerRunR_0.png", UriKind.Relative));
             WriteableBitmap bm = new WriteableBitmap(img);
-            surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(100, 100)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(new Size(75, 75)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
             
             base.Draw(surface);
         }
@@ -35,11 +36,13 @@ namespace WPFGame.Entities
             {
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
             }
+
             else if(Keyboard.IsKeyDown(Key.Left) && Position.X >= 0)
             {
-                Velocity = new System.Numerics.Vector2(-120, Velocity.Y);
+                Velocity = new System.Numerics.Vector2(-240, Velocity.Y);
                 
             }
+
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < 700)
             {
                 Velocity = new System.Numerics.Vector2(maxspeed, Velocity.Y);
@@ -67,10 +70,10 @@ namespace WPFGame.Entities
             }
 
             //Stop falling at the bottom
-            if(Position.Y > 250 && jumping == true)
+            if(Position.Y > floor && jumping == true)
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
-                Position = new System.Numerics.Vector2(Position.X, 250); // resets the base vertical position
+                Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
                 jumping = false; //stops jumping 
                 force = gforce;
             }
