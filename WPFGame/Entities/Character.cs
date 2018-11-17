@@ -31,15 +31,18 @@ namespace WPFGame.Entities
         int force;
         public override void move()
         {
-
-            if(Keyboard.IsKeyDown(Key.Left))
+            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right))
             {
-                if(Position.X >= 0) { Velocity = new System.Numerics.Vector2(-120, Velocity.Y); }
+                Velocity = new System.Numerics.Vector2(0, Velocity.Y);
+            }
+            else if(Keyboard.IsKeyDown(Key.Left) && Position.X >= 0)
+            {
+                Velocity = new System.Numerics.Vector2(-120, Velocity.Y);
                 
             }
-            else if (Keyboard.IsKeyDown(Key.Right))
+            else if (Keyboard.IsKeyDown(Key.Right) && Position.X < 700)
             {
-                if(Position.X <= 400) { Velocity = new System.Numerics.Vector2(maxspeed, Velocity.Y); }
+                Velocity = new System.Numerics.Vector2(maxspeed, Velocity.Y);
                 
             }
             else
@@ -60,7 +63,7 @@ namespace WPFGame.Entities
             {
                 Velocity += new System.Numerics.Vector2(0, force);
                 if(force < 120)
-                    force += 12;
+                    force += 15;
             }
 
             //Stop falling at the bottom
