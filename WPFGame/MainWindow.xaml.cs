@@ -50,6 +50,8 @@ namespace WPFGame
             world.GameTick();
             writeableBmp.Clear();
 
+            //Draw background height = 600 width = 800
+
             foreach(GameEntity entity in world.GameEntities)
             {
                 entity.Draw(writeableBmp);
