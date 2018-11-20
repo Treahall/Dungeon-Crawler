@@ -148,5 +148,8 @@
     <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_2.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Tiles\Stage1background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
