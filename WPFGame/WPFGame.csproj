@@ -138,5 +138,15 @@
   <ItemGroup>
     <Resource Include="VisualAssets\Tiles\floor_light.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_0.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_1.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_2.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_3.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_0.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_1.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_2.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
