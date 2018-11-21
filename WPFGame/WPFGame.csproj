@@ -110,15 +110,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Entities\player-run-right-armed.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Entities\download.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Entities\34.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_0.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_2.png" />
