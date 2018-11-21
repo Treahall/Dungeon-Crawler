@@ -19,7 +19,7 @@ namespace WPFGame.Entities
         int floor = 400;
         int maxspeed = 240;
 
-        //Make lists for images
+        //Make lists for images 200ms each
 
         public override void Draw(WriteableBitmap surface)
         {
