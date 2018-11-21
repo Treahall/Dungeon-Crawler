@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Character.cs" />
+    <Compile Include="Graphics.cs" />
     <Compile Include="World\GameWorld.cs" />
     <Compile Include="World\Stage.cs" />
     <Page Include="MainWindow.xaml">
