@@ -24,8 +24,15 @@
   </Class>
   <Class Name="WPFGame.Entities.Character">
     <Position X="0.5" Y="3.5" Width="1.75" />
+    <NestedTypes>
+      <Enum Name="WPFGame.Entities.Character.Direction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Entities\Character.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAIAAiGAAAAMAIAAAAAAAAAAAAgwAAAAAAg=</HashCode>
+      <HashCode>AAgAAAAAEgIAAiGAAAAIAJAAEAAAAAAAAAgwAEAAAAo=</HashCode>
       <FileName>Entities\Character.cs</FileName>
     </TypeIdentifier>
   </Class>

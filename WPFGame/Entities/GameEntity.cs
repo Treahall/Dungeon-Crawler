@@ -23,7 +23,7 @@ namespace WPFGame.GameEntities
              
         }
 
-        public virtual void move()
+        public virtual void SetVelocity()
         {
 
         }
