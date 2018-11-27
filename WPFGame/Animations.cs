@@ -32,8 +32,8 @@ namespace WPFGame
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
-        //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
-        //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
+        public List<string> WereWRunLeft = new List<string> {"../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_0.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_1.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_2.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_3.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_4.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Left/werewolf_run_L_5.png" };
+        public List<string> WereWRunRight = new List<string> {"../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_0.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_1.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_2.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_3.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_4.png", "../../VisualAssets/Actors/Enemies/Werewolf/Run/Right/werewolf_run_R_5.png" };
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
         //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
