@@ -144,18 +144,18 @@
     <Resource Include="VisualAssets\Tiles\Stage1background.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_0.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_1.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_2.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_3.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_4.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Left\werewolf_run_L_5.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_0.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_1.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_2.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_3.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_4.png" />
-    <Resource Include="VisualAssets\Actors\Enemys\Werewolf\Run\Right\werewolf_run_R_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Left\werewolf_run_L_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\Right\werewolf_run_R_5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
