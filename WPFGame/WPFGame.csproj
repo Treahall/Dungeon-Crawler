@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WPFGame.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -63,8 +66,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\Character.cs" />
+    <Compile Include="Algorithms.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Animations.cs" />
+    <Compile Include="Graphics.cs" />
     <Compile Include="World\GameWorld.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,7 +104,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -114,37 +118,34 @@
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_2.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Idle\PlayerIdle_3.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_0.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_1.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_2.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_3.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_4.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Left\PlayerRunL_5.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_0.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_1.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_2.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_3.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_4.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Run\Right\PlayerRunR_5.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_0.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_1.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_2.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_3.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_4.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Tiles\floor_light.png" />
+    <Resource Include="VisualAssets\Floors\floor_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_0.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_1.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_2.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Left\JumpL_3.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_0.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_1.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_2.png" />
-    <Resource Include="VisualAssets\Actors\Player_Sprites\Movement\Jump\Right\JumpR_3.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_0.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_1.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_2.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Tiles\Stage1background.png" />
+    <Resource Include="VisualAssets\Backgrounds\BG_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="VisualAssets\Actors\Enemies\Werewolf\Run\" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

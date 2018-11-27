@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WPFGame.Entities;
 using WPFGame.GameEntities;
 using WPFGame.World;
+using System.Resources;
 
 namespace WPFGame
 {
@@ -23,9 +24,10 @@ namespace WPFGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        int height, width;
-        WriteableBitmap writeableBmp;
-        GameWorld world;
+        double H, W;
+        int floor = 400;
+        WriteableBitmap WindowBM;
+        GameWorld game;
 
 
         public MainWindow()
@@ -33,44 +35,49 @@ namespace WPFGame
             InitializeComponent();
         }
 
-        private void ViewPort_Loaded(object sender, RoutedEventArgs e)
+
+        //functions as initializer for program
+        private void Screen_Loaded(object sender, RoutedEventArgs e)
         {
-            width = (int)this.ViewPortContainer.ActualWidth;
-            height = (int)this.ViewPortContainer.ActualHeight;
-            writeableBmp = BitmapFactory.New(width, height);
-            ViewPort.Source = writeableBmp;
+            //Get Window Height and Width
+            W = (double)this.ScreenGrid.ActualWidth;
+            H =  (double)this.ScreenGrid.ActualHeight;
+
+            //store as a resource files and create bitmap on whole screen
+            Application.Current.Resources["WindowWidth"] = W;
+            Application.Current.Resources["WindowHeight"] = H;
+            WindowBM = BitmapFactory.New((int)(double)Application.Current.Resources["WindowWidth"], (int)(double)Application.Current.Resources["WindowHeight"]);
+            ScreenImage.Source = WindowBM;
             CreateWorld();
-            world.StartTimer();
-            CompositionTarget.Rendering += CompositionTarget_Rendering;
+            game.StartTimer();
+            CompositionTarget.Rendering += NextFrameEvent;
 
         }
 
-        private void CompositionTarget_Rendering(object sender, EventArgs e)
+        private void NextFrameEvent(object sender, EventArgs e)
         {
-            writeableBmp.Clear();
-            world.GameTick();
-            
+            WindowBM.Clear();
+            game.DrawStage(WindowBM);
 
-            //Draw background height = 600 width = 800
+            game.GameTick();
 
-            foreach(GameEntity entity in world.GameEntities)
+            foreach(GameEntity entity in game.GameEntities)
             {
-                entity.Draw(writeableBmp);
+                entity.Draw(WindowBM);
             }
         }
       
         private void CreateWorld()
         {
-            world = new GameWorld();
+            game = new GameWorld();
 
-            var character = new Character()
+            var character = new Player()
             {
-                Position = new System.Numerics.Vector2(500, 400) 
+                // sets position of user mid screen(x) on the floor(y)
+                Position = new System.Numerics.Vector2((float)W/2, floor)
             };
 
-            world.AddEntity(character);
+            game.AddEntity(character);
         }
-
-
     }
 }

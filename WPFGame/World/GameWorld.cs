@@ -13,21 +13,21 @@ namespace WPFGame.World
 {
     class GameWorld
     {
+        int numMaps = new Graphics().Floors.Count;
+        private TimeSpan previousGameTick;
+        public List<GameEntity> GameEntities { get; set; }
+        public Stopwatch GameTimer { get; }
+
         public GameWorld()
         {
             GameEntities = new List<GameEntity>();
             GameTimer = new Stopwatch();
         }
 
-        public List<GameEntity> GameEntities { get; set; }
-        public Stopwatch GameTimer { get;}
-
         public void AddEntity(GameEntity entity)
         {
             GameEntities.Add(entity);
         }
-
-        private TimeSpan previousGameTick;
 
         public float MillisecondsPassedSinceLastTick
         {
@@ -42,16 +42,24 @@ namespace WPFGame.World
             GameTimer.Start();
         }
 
-        public void DrawStage(string stageURI, WriteableBitmap surface)
-        {   //Draws the floor
-            BitmapImage imga = new BitmapImage(new Uri("../../VisualAssets/Tiles/floor_light.png", UriKind.Relative));
-            WriteableBitmap bma = new WriteableBitmap(imga);
+        public void DrawStage(WriteableBitmap surface)
+        {
+            Random random = new Random();
+
+            //Draw the background
+            BitmapImage img = new BitmapImage(new Uri(new Graphics().Backgrounds[random.Next(numMaps)], UriKind.Relative));
+            WriteableBitmap bma = new WriteableBitmap(img);
+            surface.Blit(new Point(0,0), bma, new Rect(new Size(800, 600)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+
+            //Draws the floor
+            img = new BitmapImage(new Uri(new Graphics().Floors[random.Next(numMaps)], UriKind.Relative));
+            bma = new WriteableBitmap(img);
             surface.Blit(new Point(0, 472), bma, new Rect(new Size(800, 100)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
         public void GameTick()
         {
-
+            //draw Background
             foreach (var entity in GameEntities)
                 entity.GameTick(MillisecondsPassedSinceLastTick);
 
