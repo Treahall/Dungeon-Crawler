@@ -47,8 +47,9 @@ namespace WPFGame
 
         private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
-            world.GameTick();
             writeableBmp.Clear();
+            world.GameTick();
+            
 
             //Draw background height = 600 width = 800
 
