@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WPFGame.GameEntities;
+using WPFGame.
 
 namespace WPFGame.World
 {
@@ -22,6 +23,7 @@ namespace WPFGame.World
         {
             GameEntities = new List<GameEntity>();
             GameTimer = new Stopwatch();
+             = new Size((double)Application.Current.Resources["WindowWidth"], (double)Application.Current.Resources["WindowHeight"]);
         }
 
         public void AddEntity(GameEntity entity)
@@ -54,7 +56,7 @@ namespace WPFGame.World
             //Draws the floor
             img = new BitmapImage(new Uri(new Graphics().Floors[random.Next(numMaps)], UriKind.Relative));
             bma = new WriteableBitmap(img);
-            surface.Blit(new Point(0, 472), bma, new Rect(new Size(800, 100)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(new Point(0, WindowSize.Height - 100), bma, new Rect(new Size(WindowSize.Width, 100)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
         public void GameTick()

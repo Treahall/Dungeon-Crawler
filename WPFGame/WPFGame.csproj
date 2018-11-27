@@ -66,10 +66,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Algorithms.cs" />
+    <Compile Include="HelperClasses\Algorithms.cs" />
     <Compile Include="Entities\Player.cs" />
-    <Compile Include="Animations.cs" />
-    <Compile Include="Graphics.cs" />
+    <Compile Include="HelperClasses\Animations.cs" />
+    <Compile Include="HelperClasses\BGgraphics.cs" />
     <Compile Include="World\GameWorld.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

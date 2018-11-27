@@ -25,7 +25,7 @@ namespace WPFGame
     public partial class MainWindow : Window
     {
         double H, W;
-        int floor = 400;
+        int floor;
         WriteableBitmap WindowBM;
         GameWorld game;
 
@@ -40,8 +40,10 @@ namespace WPFGame
         private void Screen_Loaded(object sender, RoutedEventArgs e)
         {
             //Get Window Height and Width
-            W = (double)this.ScreenGrid.ActualWidth;
-            H =  (double)this.ScreenGrid.ActualHeight;
+            W = (double)ScreenGrid.ActualWidth;
+            H =  (double)ScreenGrid.ActualHeight;
+
+            floor = (int)(H - 100);
 
             //store as a resource files and create bitmap on whole screen
             Application.Current.Resources["WindowWidth"] = W;
