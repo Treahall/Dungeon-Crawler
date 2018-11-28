@@ -123,16 +123,25 @@
   <data name="HoundHealth" xml:space="preserve">
     <value>25</value>
   </data>
+  <data name="HoundSpeed" xml:space="preserve">
+    <value>80</value>
+  </data>
   <data name="SkeletonDamage" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="SkeletonHealth" xml:space="preserve">
     <value>35</value>
   </data>
+  <data name="SkeletonSpeed" xml:space="preserve">
+    <value>60</value>
+  </data>
   <data name="WereWolfDamage" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="WereWolfHealth" xml:space="preserve">
     <value>50</value>
+  </data>
+  <data name="WereWolfSpeed" xml:space="preserve">
+    <value>80</value>
   </data>
 </root>

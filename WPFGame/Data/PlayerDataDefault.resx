@@ -132,6 +132,9 @@
   <data name="HealthMod" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="PositionX" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>120</value>
   </data>

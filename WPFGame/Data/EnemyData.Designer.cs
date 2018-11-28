@@ -79,6 +79,15 @@ namespace WPFGame.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 80.
+        /// </summary>
+        public static string HoundSpeed {
+            get {
+                return ResourceManager.GetString("HoundSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4.
         /// </summary>
         public static string SkeletonDamage {
@@ -97,6 +106,15 @@ namespace WPFGame.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 60.
+        /// </summary>
+        public static string SkeletonSpeed {
+            get {
+                return ResourceManager.GetString("SkeletonSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5.
         /// </summary>
         public static string WereWolfDamage {
@@ -111,6 +129,15 @@ namespace WPFGame.Data {
         public static string WereWolfHealth {
             get {
                 return ResourceManager.GetString("WereWolfHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80.
+        /// </summary>
+        public static string WereWolfSpeed {
+            get {
+                return ResourceManager.GetString("WereWolfSpeed", resourceCulture);
             }
         }
     }

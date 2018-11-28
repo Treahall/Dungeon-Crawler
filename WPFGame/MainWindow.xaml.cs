@@ -27,7 +27,7 @@ namespace WPFGame
         double H, W;
         int floor;
         WriteableBitmap WindowBM;
-        GameWorld game;
+        World game;
 
 
         public MainWindow()

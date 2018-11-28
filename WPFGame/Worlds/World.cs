@@ -10,23 +10,25 @@ using System.Windows.Media.Imaging;
 
 namespace WPFGame.Worlds
 {
-    abstract class World
+    public abstract class World
     {
-
-        public int backgroundIndex, groundIndex, numMaps;
+        public int backgroundIndex, groundIndex;
+        public int numMaps;
         public TimeSpan previousGameTick;
         public List<GameEntity> GameEntities { get; set; }
-        public StageGraphic graphics;
+        public StageGraphic graphics = new StageGraphic();
         public Stopwatch GameTimer { get; }
-
+        
         public World()
         {
+            calculateNumMaps();
             GameTimer = new Stopwatch();
             GameEntities = new List<GameEntity>();
             graphics = new StageGraphic();
             CreateStageIndexes();
         }
 
+        public abstract void calculateNumMaps();
         public void AddEntity(GameEntity entity) { GameEntities.Add(entity); }
         public void StartTimer() { GameTimer.Start(); }
 
@@ -38,7 +40,8 @@ namespace WPFGame.Worlds
             }
         }
 
-        public void CreateStageIndexes()
+        //gets index of random stage bg and floor.
+        public virtual void CreateStageIndexes()
         {
             Random random = new Random();
             backgroundIndex = random.Next(numMaps);
@@ -47,7 +50,13 @@ namespace WPFGame.Worlds
 
         public abstract void DrawStage(WriteableBitmap surface);
 
+        public void GameTick()
+        {
+            foreach (var entity in GameEntities)
+                entity.GameTick(MillisecondsPassedSinceLastTick);
 
+            previousGameTick = GameTimer.Elapsed;
+        }
 
     }
 }

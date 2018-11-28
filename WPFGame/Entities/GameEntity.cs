@@ -10,29 +10,47 @@ using System.Windows.Media.Imaging;
 using static System.Windows.Media.Imaging.WriteableBitmapExtensions;
 using WPFGame.stageGraphics;
 using WPFGame.Animation;
+using System.Resources;
 
 namespace WPFGame.Entities
 {
     //Is the abstract game entity and all entities should inherit from it.
     public abstract class GameEntity
     {
+        //defines paths for character resource files
+        public const string enemypath = "../../Data/EnemyData.resx";
+        public const string defaultpath = "../../Data/PlayerDefaultData.resx";
+        public const string savedpath = "../../Data/PlayerDataSaved.resx";
+        //uses path to create a way to access data
+        public ResourceSet enemydata = new ResourceSet(new ResourceReader(enemypath));
+        public ResourceSet defaultdata = new ResourceSet(new ResourceReader(defaultpath));
+        public ResourceSet saveddata = new ResourceSet(new ResourceReader(enemypath));
+
+        int speedstat, healthstat, damagestat;
+        public int floor, health, AnimationIndex, frames = 0, Fpa = 10, speed;
+        public double leftbound = 0, rightbound;
+        public bool FlipEntity, attacking;
         public StageGraphic graphics = new StageGraphic();
         public Animations animationLists = new Animations();
-        public int floor, health, AnimationIndex, frames = 0, Fpa = 10, speed;
-        public bool FlipEntity;
         public List<string> animation = null;
-        public double leftbound = 0, rightbound;
-        
+
+        public enum Direction { left, right, idle }
+        public Direction Currentdirection;
+        public Direction PreviousDirection;
+
 
         //Stores character image size(pixels).
         public Size Mysize = new Size();
 
         public GameEntity()
         {
-            FlipEntity = false;
-            speed = 240;
+            setSpeed();
+            Currentdirection = Direction.idle;
+            FlipEntity = false; attacking = false;
             floor = (int)graphics.FloorPos.Y;
         }
+
+        public abstract void setSpeed();
 
         //Location of game entity. = (X, Y).
         public Vector2 Position { get; set; }
@@ -49,8 +67,10 @@ namespace WPFGame.Entities
             Position += Velocity * (millisecondsPassed / 1000f);
         }
 
+        public abstract void CalculateDirection();
+
         //sets the velocity for the next movement.
-        public virtual void SetVelocity() { }
+        public abstract void SetVelocity();
 
         //Entities draw themselves.
         public virtual void Draw(WriteableBitmap surface)

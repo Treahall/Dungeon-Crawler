@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="System.Xml" />
@@ -90,7 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayerDataSaved.resx</DependentUpon>
     </Compile>
-    <Compile Include="Worlds\MainMenu.cs" />
+    <Compile Include="Worlds\MenuWorld.cs" />
     <Compile Include="Worlds\World.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,22 +121,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Data\PlayerDataDefault.resx">
+    <Resource Include="Data\PlayerDataDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerDataDefault.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\EnemyData.resx">
+    </Resource>
+    <Resource Include="Data\EnemyData.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnemyData.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\PlayerDataSaved.resx">
+    <Resource Include="Data\PlayerDataSaved.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerDataSaved.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,6 +179,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayerWalk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main_Menu_BG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

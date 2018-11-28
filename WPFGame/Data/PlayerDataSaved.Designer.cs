@@ -108,6 +108,15 @@ namespace WPFGame.Data {
         /// <summary>
         ///   Looks up a localized string similar to 0.
         /// </summary>
+        public static string PositionX {
+            get {
+                return ResourceManager.GetString("PositionX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
         public static string Speed {
             get {
                 return ResourceManager.GetString("Speed", resourceCulture);

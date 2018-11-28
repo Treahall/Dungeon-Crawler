@@ -8,6 +8,16 @@ namespace WPFGame.Entities
 {
     class Skeleton : Enemy
     {
+        public Skeleton() : base() { }
 
+        public override void setSpeed()
+        {
+            speed = int.Parse(enemydata.GetString("SkeletonSpeed"));
+        }
+
+        public override void SetVelocity()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
