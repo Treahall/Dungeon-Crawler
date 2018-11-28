@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:WPFGame"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Grid Name= "ViewPortContainer">
-        <Image Name="ViewPort" Loaded= "ViewPort_Loaded"></Image>
+    
+    <Grid Name="ScreenGrid">
+        <Image Name="ScreenImage" Loaded="Screen_Loaded"></Image>
     </Grid>
 </Window>
