@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -18,13 +19,14 @@ namespace WPFGame.Entities
     public abstract class GameEntity
     {
         //defines paths for character resource files
-        public const string enemypath = "../../Data/EnemyData.resx";
-        public const string defaultpath = "../../Data/PlayerDefaultData.resx";
-        public const string savedpath = "../../Data/PlayerDataSaved.resx";
+        public const String enemypath = "../WPFGame/Properties/EnemyData.resx";
+        public const String defaultpath = @"./PlayerDefaultData.resx";
+        public const String savedpath = "./PlayerDataSaved.resx";
+
         //uses path to create a way to access data
-        public ResourceSet enemydata = new ResourceSet(new ResourceReader(enemypath));
-        public ResourceSet defaultdata = new ResourceSet(new ResourceReader(defaultpath));
-        public ResourceSet saveddata = new ResourceSet(new ResourceReader(enemypath));
+        public ResourceSet enemydata = new ResourceSet(enemypath);
+        public ResourceSet defaultdata = new ResourceSet(defaultpath);
+        public ResourceSet savedData = new ResourceSet(enemypath);
 
         int speedstat, healthstat, damagestat;
         public int floor, health, AnimationIndex, frames = 0, Fpa = 10, speed;
@@ -44,6 +46,7 @@ namespace WPFGame.Entities
 
         public GameEntity()
         {
+            
             setSpeed();
             Currentdirection = Direction.idle;
             FlipEntity = false; attacking = false;

@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,12 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\EnemyData.Designer.cs">
+    <Compile Include="Properties\EnemyData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EnemyData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\PlayerDataDefault.Designer.cs">
+    <Compile Include="Properties\PlayerDataDefault.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayerDataDefault.resx</DependentUpon>
@@ -86,7 +101,7 @@
     <Compile Include="HelperClasses\Animations.cs" />
     <Compile Include="HelperClasses\stageGraphics.cs" />
     <Compile Include="Worlds\GameWorld.cs" />
-    <Compile Include="Data\PlayerDataSaved.Designer.cs">
+    <Compile Include="Properties\PlayerDataSaved.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayerDataSaved.resx</DependentUpon>
@@ -121,19 +136,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Data\PlayerDataDefault.resx">
+    <Resource Include="Properties\PlayerDataDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerDataDefault.Designer.cs</LastGenOutput>
     </Resource>
-    <Resource Include="Data\EnemyData.resx">
+    <Resource Include="Properties\EnemyData.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnemyData.Designer.cs</LastGenOutput>
     </Resource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Data\PlayerDataSaved.resx">
+    <Resource Include="Properties\PlayerDataSaved.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlayerDataSaved.Designer.cs</LastGenOutput>
     </Resource>
@@ -184,10 +199,16 @@
     <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerWalk.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Main_Menu_BG.png" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPFGame.Data {
+namespace WPFGame.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WPFGame.Data {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPFGame.Data.EnemyData", typeof(EnemyData).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPFGame.Properties.EnemyData", typeof(EnemyData).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

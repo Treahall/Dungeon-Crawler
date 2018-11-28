@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPFGame.stageGraphics;
-using WPFGame.Data;
 using System.Resources;
 
 namespace WPFGame.Entities
@@ -38,11 +37,11 @@ namespace WPFGame.Entities
             PreviousDirection = Currentdirection;
 
             //if difference in distance between player and enemy < 50
-            if (Math.Abs(Position.X - int.Parse(saveddata.GetString("PositionX"))) <= 50)
+            if (Math.Abs(Position.X - int.Parse(savedData.GetString("PositionX"))) <= 50)
             {
                 Currentdirection = Direction.idle;
             }
-            else if ((Position.X - int.Parse(saveddata.GetString("PositionX"))) < 0)
+            else if ((Position.X - int.Parse(savedData.GetString("PositionX"))) < 0)
             {
                 Currentdirection = Direction.left;
                 FlipEntity = true;
