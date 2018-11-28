@@ -4,7 +4,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WPFGame.GameEntities;
+using WPFGame.Entities;
+using WPFGame.Animation;
+using WPFGame.stageGraphics;
 using static System.Windows.Media.Imaging.WriteableBitmapExtensions;
 
 
@@ -14,16 +16,15 @@ namespace WPFGame.Entities
     {
         //int speedstat, healthstat, damagestat; for stat changes.
 
-        bool jumping = false;
+        bool jumping;
         int jumpForce = -120, force;
-        enum Direction { left, right, idle }
-        Direction Currentdirection, PreviousDirection;
 
         public Player() : base()
         {
-            animation = new Animations().CharacterIdol;
+            animation = animationLists.CharacterIdol;
             AnimationIndex = 0;
-            floor = (int)Math.Floor(WPFsize.Height) - 164; //164 is floor height
+            jumping = false;
+            Position = new System.Numerics.Vector2((float)(graphics.WindowWidth/2), floor -= GetSpriteHeight());
         }
 
         public override void Draw(WriteableBitmap surface)
@@ -31,31 +32,30 @@ namespace WPFGame.Entities
             base.Draw(surface);
         }
 
-        public void JumpAlg()
+        public void RunJumpAlg()
         {
-            //left/right bounds
+            //wall bounds for when jumping
             if (!(Position.X >= leftbound && Position.X <= rightbound))
             {
-                //if on the right, set position in bounds on right edge
-                if (Position.X >= WPFsize.Width/2)
+                //if further right
+                if (Position.X >= graphics.WindowWidth/2)
                      Position = new System.Numerics.Vector2((float)rightbound, Position.Y);
-                //if on the left, set position in bounds on left edge
+                //if further left
                 else
                     Position = new System.Numerics.Vector2(0, Position.Y);
 
-                //set horizontal velocity to zero.
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
             }
 
             //Stop falling at the bottom
             if (Position.Y > floor)
             {
-                Velocity = new System.Numerics.Vector2(Velocity.X, 0); //sets vertical velocity to zero
-                Position = new System.Numerics.Vector2(Position.X, floor); //resets the base vertical position
-                jumping = false; 
+                Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
+                Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
+                jumping = false; //stops jumping 
                 force = jumpForce;
                 Fpa = 10;
-                animation = new Animations().CharacterIdol;
+                animation = animationLists.CharacterIdol;
             }
             else
             {
@@ -63,6 +63,10 @@ namespace WPFGame.Entities
                 Velocity += new System.Numerics.Vector2(0, force);
             } 
         }
+
+        enum Direction { left, right, idle}
+        Direction Currentdirection;
+        Direction PreviousDirection;
 
         public void CalculateDirection()
         {
@@ -86,7 +90,7 @@ namespace WPFGame.Entities
             {
                 jumping = true;
                 AnimationIndex = 0;
-                animation = new Animations().CharacterJump;
+                animation = animationLists.CharacterJump;
                 Fpa = 5;
             }
         }
@@ -106,20 +110,20 @@ namespace WPFGame.Entities
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterIdol;
+                    if (!jumping) animation = animationLists.CharacterIdol;
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterRun;
+                    if (!jumping) animation = animationLists.CharacterRun;
                     FlipEntity = true;
                     break;
                 case Direction.right:
                     if (Position.X <= rightbound) Velocity = new System.Numerics.Vector2(speed, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterRun;
+                    if (!jumping) animation = animationLists.CharacterRun;
                     FlipEntity = false;
                     break;
             }
-            if (jumping == true) JumpAlg();
+            if (jumping == true) RunJumpAlg();
         }
 
         public override void GameTick(float millisecondsPassed)

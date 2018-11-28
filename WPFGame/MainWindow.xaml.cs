@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFGame.Entities;
-using WPFGame.GameEntities;
-using WPFGame.World;
+using WPFGame.Worlds;
+using WPFGame.stageGraphics;
 using System.Resources;
 
 namespace WPFGame
@@ -40,20 +40,18 @@ namespace WPFGame
         private void Screen_Loaded(object sender, RoutedEventArgs e)
         {
             //Get Window Height and Width
-            W = (double)ScreenGrid.ActualWidth;
-            H =  (double)ScreenGrid.ActualHeight;
-
-            floor = (int)(H - 100);
+            W = (double)this.ScreenGrid.ActualWidth;
+            H = (double)this.ScreenGrid.ActualHeight;
 
             //store as a resource files and create bitmap on whole screen
             Application.Current.Resources["WindowWidth"] = W;
             Application.Current.Resources["WindowHeight"] = H;
-            WindowBM = BitmapFactory.New((int)(double)Application.Current.Resources["WindowWidth"], (int)(double)Application.Current.Resources["WindowHeight"]);
+            WindowBM = BitmapFactory.New((int)W, (int)H);
             ScreenImage.Source = WindowBM;
+            floor = (int)(new StageGraphic().FloorPos.Y);
             CreateWorld();
             game.StartTimer();
             CompositionTarget.Rendering += NextFrameEvent;
-
         }
 
         private void NextFrameEvent(object sender, EventArgs e)
@@ -72,14 +70,8 @@ namespace WPFGame
         private void CreateWorld()
         {
             game = new GameWorld();
-
-            var character = new Player()
-            {
-                // sets position of user mid screen(x) on the floor(y)
-                Position = new System.Numerics.Vector2((float)W/2, floor)
-            };
-
-            game.AddEntity(character);
+            var player = new Player();
+            game.AddEntity(player);
         }
     }
 }

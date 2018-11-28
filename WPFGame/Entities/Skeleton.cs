@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFGame.Algorithm
+namespace WPFGame.Entities
 {
-    public class Algorithms
+    class Skeleton : Enemy
     {
+
     }
 }
