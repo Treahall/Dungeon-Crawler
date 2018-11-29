@@ -19,7 +19,7 @@ namespace WPFGame.Entities
 
         public Player() : base()
         {
-            animation = new Animations().CharacterIdol;
+            animation = new Animations().CharacterIdle;
             AnimationIndex = 0;
             jumping = false;
             //Initial position
@@ -59,7 +59,7 @@ namespace WPFGame.Entities
                 jumping = false; //stops jumping 
                 force = jumpForce;
                 Fpa = 10;
-                animation = new Animations().CharacterIdol;
+                animation = new Animations().CharacterIdle;
             }
             else
             {
@@ -112,7 +112,7 @@ namespace WPFGame.Entities
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterIdol;
+                    if (!jumping) animation = new Animations().CharacterIdle;
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
