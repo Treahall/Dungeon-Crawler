@@ -18,6 +18,7 @@ namespace WPFGame.Entities
     public abstract class GameEntity
     {
         public int floor = (int)(new StageGraphics().FloorPos.Y);
+        int attackframes;
 
         public int health, healthstat, damagestat, PlayerXpos, AnimationIndex, speed;
         public int frames = 0, Fpa = 10;
@@ -57,10 +58,6 @@ namespace WPFGame.Entities
             Position += Velocity * (millisecondsPassed / 1000f);
         }
         
-
-
-
-
         //Entities draw themselves.
         public virtual void Draw(WriteableBitmap surface)
         {
