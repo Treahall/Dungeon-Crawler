@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPFGame.stageGraphics;
+using WPFGame.Data;
 using WPFGame.Entities;
 using System.Diagnostics;
 using System.Windows.Media.Imaging;
@@ -12,11 +12,9 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
-        public int backgroundIndex, groundIndex;
-        public int numMaps;
+        public int backgroundIndex, groundIndex, numMaps;
         public TimeSpan previousGameTick;
         public List<GameEntity> GameEntities { get; set; }
-        public StageGraphic graphics = new StageGraphic();
         public Stopwatch GameTimer { get; }
         
         public World()
@@ -24,7 +22,6 @@ namespace WPFGame.Worlds
             calculateNumMaps();
             GameTimer = new Stopwatch();
             GameEntities = new List<GameEntity>();
-            graphics = new StageGraphic();
             CreateStageIndexes();
         }
 
@@ -34,10 +31,7 @@ namespace WPFGame.Worlds
 
         public float MillisecondsPassedSinceLastTick
         {
-            get
-            {
-                return (float)(GameTimer.Elapsed - previousGameTick).TotalMilliseconds;
-            }
+            get { return (float)(GameTimer.Elapsed - previousGameTick).TotalMilliseconds; }
         }
 
         //gets index of random stage bg and floor.

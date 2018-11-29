@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFGame.Animation
+namespace WPFGame.Data
 {
     public class Animations
     {
+        public Animations() { }
         public readonly List<string> CharacterRun = new List<string> { "../../VisualAssets/Actors/Player_Sprites/Run/PlayerRun_0.png",
                                                               "../../VisualAssets/Actors/Player_Sprites/Run/PlayerRun_1.png",
                                                               "../../VisualAssets/Actors/Player_Sprites/Run/PlayerRun_2.png",

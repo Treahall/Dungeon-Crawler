@@ -6,8 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WPFGame.Entities;
-using WPFGame.Animation;
-using WPFGame.stageGraphics;
+using WPFGame.Data;
 using static System.Windows.Media.Imaging.WriteableBitmapExtensions;
 using System.Collections;
 
@@ -20,16 +19,16 @@ namespace WPFGame.Entities
 
         public Player() : base()
         {
-            animation = animationLists.CharacterIdol;
+            animation = new Animations().CharacterIdol;
             AnimationIndex = 0;
             jumping = false;
             //Initial position
-            Position = new System.Numerics.Vector2((float)(graphics.WindowWidth/2), floor -= GetSpriteHeight());
+            Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= GetSpriteHeight());
         }
 
         public override void setSpeed()
         {
-            speed = int.Parse(defaultdata.GetString("Speed"));
+            speed = 240;
         }
 
         public override void Draw(WriteableBitmap surface)
@@ -43,7 +42,7 @@ namespace WPFGame.Entities
             if (!(Position.X >= leftbound && Position.X <= rightbound))
             {
                 //if further right
-                if (Position.X >= graphics.WindowWidth/2)
+                if (Position.X >= new StageGraphics().WindowWidth/2)
                      Position = new System.Numerics.Vector2((float)rightbound, Position.Y);
                 //if further left
                 else
@@ -60,7 +59,7 @@ namespace WPFGame.Entities
                 jumping = false; //stops jumping 
                 force = jumpForce;
                 Fpa = 10;
-                animation = animationLists.CharacterIdol;
+                animation = new Animations().CharacterIdol;
             }
             else
             {
@@ -93,7 +92,7 @@ namespace WPFGame.Entities
             {
                 jumping = true;
                 AnimationIndex = 0;
-                animation = animationLists.CharacterJump;
+                animation = new Animations().CharacterJump;
                 Fpa = 5;
             }
         }
@@ -102,7 +101,7 @@ namespace WPFGame.Entities
         {
             CalculateDirection();
 
-            //wall bounds for when jumping.
+            //Independent wall bounds for when jumping.
             if (!(Position.X >= leftbound && Position.X <= rightbound))
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
 
@@ -113,53 +112,21 @@ namespace WPFGame.Entities
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterIdol;
+                    if (!jumping) animation = new Animations().CharacterIdol;
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterRun;
+                    if (!jumping) animation = new Animations().CharacterRun;
                     FlipEntity = true;
                     break;
                 case Direction.right:
                     if (Position.X <= rightbound) Velocity = new System.Numerics.Vector2(speed, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterRun;
+                    if (!jumping) animation = new Animations().CharacterRun;
                     FlipEntity = false;
                     break;
             }
             if (jumping == true) RunJumpAlg();
-            pushPositionX();
-        }
-
-        //Store the Players X position as a resource so enemies can base movement on it.
-        void pushPositionX()
-        {
-            Hashtable newResource = new Hashtable();
-            ResourceReader reader = new ResourceReader(savedpath);
-            ResourceWriter writer = new ResourceWriter(savedpath);
-            if(reader!= null)
-            {
-                foreach (DictionaryEntry entry in reader)
-                {
-                    if ((string)entry.Key == "PositionX")
-                    {
-                        newResource.Add(entry.Key.ToString(), Position.X.ToString());
-                        writer.AddResource(entry.Key.ToString(), Position.X.ToString());
-                    }
-                    else if (entry.Value == null)
-                    {
-                        newResource.Add(entry.Key, "");
-                        writer.AddResource(entry.Key.ToString(), "");
-                    }
-                    else
-                    {
-                        newResource.Add(entry.Key, entry.Value);
-                        writer.AddResource(entry.Key.ToString(), entry.Value.ToString());
-                    }
-                }
-                reader.Close();
-            }
-            writer.Generate();
-            writer.Close();
+            //pushPositionX();
         }
 
         public override void GameTick(float millisecondsPassed)
