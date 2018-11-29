@@ -199,6 +199,17 @@
     <Resource Include="VisualAssets\Floors\floor_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_6.png" />
     <Resource Include="AudioAssets\AmbientNoise.wav" />
     <Content Include="AudioAssets\door.wav" />
     <Content Include="AudioAssets\footstep.wav" />
