@@ -210,5 +210,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\background_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Floors\floor_1.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="AudioAssets\door.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
