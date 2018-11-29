@@ -198,9 +198,13 @@
   <ItemGroup>
     <Resource Include="VisualAssets\Floors\floor_1.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Resource Include="AudioAssets\AmbientNoise.wav" />
     <Content Include="AudioAssets\door.wav" />
+    <Content Include="AudioAssets\footstep.wav" />
+    <Content Include="AudioAssets\jump_step.wav" />
+    <Content Include="AudioAssets\jump_woosh.wav" />
+    <Content Include="AudioAssets\sword_swing.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
