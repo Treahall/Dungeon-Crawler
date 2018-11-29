@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFGame.Entities;
 using WPFGame.Worlds;
-using WPFGame.stageGraphics;
+using WPFGame.Data;
 using System.Resources;
 
 namespace WPFGame
@@ -25,16 +25,14 @@ namespace WPFGame
     public partial class MainWindow : Window
     {
         double H, W;
-        int floor;
+        int floor, positionX;
         WriteableBitmap WindowBM;
         World game;
-
 
         public MainWindow()
         {
             InitializeComponent();
         }
-
 
         //functions as initializer for program
         private void Screen_Loaded(object sender, RoutedEventArgs e)
@@ -43,12 +41,12 @@ namespace WPFGame
             W = (double)this.ScreenGrid.ActualWidth;
             H = (double)this.ScreenGrid.ActualHeight;
 
-            //store as a resource files and create bitmap on whole screen
+            //store as resource files and create bitmap on whole screen
             Application.Current.Resources["WindowWidth"] = W;
             Application.Current.Resources["WindowHeight"] = H;
             WindowBM = BitmapFactory.New((int)W, (int)H);
             ScreenImage.Source = WindowBM;
-            floor = (int)(new StageGraphic().FloorPos.Y);
+            floor = (int)(new StageGraphics().FloorPos.Y);
             CreateWorld();
             game.StartTimer();
             CompositionTarget.Rendering += NextFrameEvent;
@@ -58,20 +56,27 @@ namespace WPFGame
         {
             WindowBM.Clear();
             game.DrawStage(WindowBM);
-
             game.GameTick();
 
+            //records player x cord and gives it to all enemies
             foreach(GameEntity entity in game.GameEntities)
             {
+                if(entity is Player)
+                    positionX = (int)entity.Position.X;
+                else
+                    entity.PlayerXpos = positionX;
+
                 entity.Draw(WindowBM);
             }
         }
       
         private void CreateWorld()
         {
-            game = new GameWorld();
-            var player = new Player();
-            game.AddEntity(player);
+            game = new FightingWorld();
+            GameEntity entity = new Player();
+            game.AddEntity(entity);
+            entity = new WereWolf();
+            //game.AddEntity(entity);
         }
     }
 }

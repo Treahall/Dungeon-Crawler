@@ -1,42 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WPFGame.Entities;
 using WPFGame.Data;
+
+
 
 namespace WPFGame.Worlds
 {
-    public class MenuWorld : World
+    public class FightingWorld : World
     {
-        bool startGame = false;
-
-        public MenuWorld() : base()
+        public FightingWorld() : base()
         {
-        }
-
-        public override void CreateStageIndexes()
-        {
-            backgroundIndex = 0;
-            groundIndex = 1;
         }
 
         public override void calculateNumMaps()
         {
-            //not needed. Never changes maps for menu
-            return;
+            numMaps = new StageGraphics().Backgrounds.Count;
         }
 
         public override void DrawStage(WriteableBitmap surface)
         {
             //loads the background
-            BitmapImage bg = new BitmapImage(new Uri(new StageGraphics().MainMenuGraphics[backgroundIndex], UriKind.Relative));
+            BitmapImage bg = new BitmapImage(new Uri(new StageGraphics().Backgrounds[backgroundIndex], UriKind.Relative));
             WriteableBitmap bgWBM = new WriteableBitmap(source: bg);
             //loads the floor
-            BitmapImage fl = new BitmapImage(new Uri(new StageGraphics().MainMenuGraphics[groundIndex], UriKind.Relative));
+            BitmapImage fl = new BitmapImage(new Uri(new StageGraphics().Floors[groundIndex], UriKind.Relative));
             WriteableBitmap flWBM = new WriteableBitmap(fl);
 
             //Merges them and writes to the Window

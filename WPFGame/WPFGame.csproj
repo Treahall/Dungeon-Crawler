@@ -82,15 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Properties\EnemyData.Designer.cs">
+    <Compile Include="Properties\DataDefault.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EnemyData.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\PlayerDataDefault.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PlayerDataDefault.resx</DependentUpon>
+      <DependentUpon>DataDefault.resx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Hound.cs" />
@@ -99,13 +94,8 @@
     <Compile Include="HelperClasses\Algorithms.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="HelperClasses\Animations.cs" />
-    <Compile Include="HelperClasses\stageGraphics.cs" />
-    <Compile Include="Worlds\GameWorld.cs" />
-    <Compile Include="Properties\PlayerDataSaved.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PlayerDataSaved.resx</DependentUpon>
-    </Compile>
+    <Compile Include="HelperClasses\StageGraphics.cs" />
+    <Compile Include="Worlds\FightingWorld.cs" />
     <Compile Include="Worlds\MenuWorld.cs" />
     <Compile Include="Worlds\World.cs" />
     <Page Include="MainWindow.xaml">
@@ -136,22 +126,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Properties\PlayerDataDefault.resx">
+    <Resource Include="Properties\DataDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PlayerDataDefault.Designer.cs</LastGenOutput>
-    </Resource>
-    <Resource Include="Properties\EnemyData.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>EnemyData.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataDefault.Designer.cs</LastGenOutput>
     </Resource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Properties\PlayerDataSaved.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PlayerDataSaved.Designer.cs</LastGenOutput>
-    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

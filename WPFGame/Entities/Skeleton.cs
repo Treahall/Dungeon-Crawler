@@ -12,7 +12,7 @@ namespace WPFGame.Entities
 
         public override void setSpeed()
         {
-            speed = int.Parse(enemydata.GetString("SkeletonSpeed"));
+            //speed = int.Parse(enemydata.GetString("SkeletonSpeed"));
         }
 
         public override void SetVelocity()
