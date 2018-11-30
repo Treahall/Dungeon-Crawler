@@ -19,7 +19,7 @@ namespace WPFGame.Entities
     {
         public int floor = (int)(new StageGraphics().FloorPos.Y);
 
-        public int health, healthstat, damagestat, PlayerXpos, AnimationIndex, speed;
+        public int health, healthstat, damagestat, PlayerXpos, AnimationIndex, speed, attackIndex = 0;
         public int frames = 0, Fpa = 10;
         public double leftbound = 0, rightbound;
         public bool FlipEntity, attacking;

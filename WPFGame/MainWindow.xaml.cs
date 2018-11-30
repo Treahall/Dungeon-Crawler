@@ -32,18 +32,21 @@ namespace WPFGame
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         //functions as initializer for program
         private void Screen_Loaded(object sender, RoutedEventArgs e)
         {
+            
             //Get Window Height and Width
             W = (double)this.ScreenGrid.ActualWidth;
             H = (double)this.ScreenGrid.ActualHeight;
 
-            //store as resource files and create bitmap on whole screen
+            //store as resource files.
             Application.Current.Resources["WindowWidth"] = W;
             Application.Current.Resources["WindowHeight"] = H;
+
             WindowBM = BitmapFactory.New((int)W, (int)H);
             ScreenImage.Source = WindowBM;
             floor = (int)(new StageGraphics().FloorPos.Y);
@@ -76,7 +79,7 @@ namespace WPFGame
             GameEntity entity = new Player();
             game.AddEntity(entity);
             entity = new WereWolf();
-            //game.AddEntity(entity);
+            game.AddEntity(entity);
         }
     }
 }
