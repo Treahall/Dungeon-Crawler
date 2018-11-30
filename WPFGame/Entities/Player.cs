@@ -108,9 +108,7 @@ namespace WPFGame.Entities
 
             if (Keyboard.IsKeyDown(Key.V) && !attacking && !jumping)
             {
-                //AnimationIndex = 0;
                 attacking = true;
-                //AnimationIndex = 0;
                 attackframes = new Animations().CharacterAtk.Count;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterAtk;
