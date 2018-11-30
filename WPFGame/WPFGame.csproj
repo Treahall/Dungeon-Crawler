@@ -192,5 +192,37 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\background_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Floors\floor_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VisualAssets\Floors\floor_3.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_0.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_1.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_2.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_3.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_4.png" />
+    <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Idle\werewolf_idle_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Attack\werewolf_atk_6.png" />
+    <Resource Include="AudioAssets\AmbientNoise.wav" />
+    <Content Include="AudioAssets\door.wav" />
+    <Content Include="AudioAssets\footstep.wav" />
+    <Content Include="AudioAssets\jump_step.wav" />
+    <Content Include="AudioAssets\jump_woosh.wav" />
+    <Content Include="AudioAssets\sword_swing.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
