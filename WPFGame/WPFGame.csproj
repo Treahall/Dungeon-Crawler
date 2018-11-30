@@ -199,6 +199,7 @@
     <Resource Include="VisualAssets\Floors\floor_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Floors\floor_3.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_0.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_2.png" />

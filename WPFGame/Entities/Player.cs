@@ -16,7 +16,7 @@ namespace WPFGame.Entities
     {
         bool jumping;
         int jumpForce = -120, force;
-        int attackframes;
+        int attackframes=0;
 
         public Player() : base()
         {
@@ -84,25 +84,39 @@ namespace WPFGame.Entities
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
                 Currentdirection = Direction.right;
             // Idle
-            else if(!jumping)
+            else if(!jumping && !attacking)
                 Currentdirection = Direction.idle;
 
+            if (AnimationIndex == 5 && attacking == true)
+            {
+                attacking = false;
+                animation = new Animations().CharacterIdle;
+                AnimationIndex = 0;
+                Fpa = 10;
+                
+            }
+
             //sperated for independent jumping action
-            if (Keyboard.IsKeyDown(Key.Space) && !jumping)
+            if (Keyboard.IsKeyDown(Key.Space) && !jumping )
             {
                 jumping = true;
+                attacking = false;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
                 Fpa = 5;
             }
 
-            if (Keyboard.IsKeyDown(Key.V) && !attacking)
+            if (Keyboard.IsKeyDown(Key.V) && !attacking && !jumping)
             {
-                attackframes = new Animations().CharacterAtk.Count;
+                //AnimationIndex = 0;
                 attacking = true;
+                //AnimationIndex = 0;
+                attackframes = new Animations().CharacterAtk.Count;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterAtk;
+                
                 Fpa = 5;
+                
             }
         }
 
@@ -136,12 +150,7 @@ namespace WPFGame.Entities
             }
             if (jumping) RunJumpAlg();
 
-            if (attacking && attackframes == 0)
-            {
-                attacking = false;
-                AnimationIndex = 0;
-                Fpa = 10;
-            }
+            
         }
 
         public override void GameTick(float millisecondsPassed)
