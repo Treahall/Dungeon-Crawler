@@ -19,7 +19,7 @@ namespace WPFGame.Entities
     {
         public int floor = (int)(new StageGraphics().FloorPos.Y);
 
-        public int health, healthstat, damagestat, PlayerXpos, AnimationIndex, speed;
+        public int health, healthstat, damagestat, PlayerXpos, AnimationIndex = 0, AttackIndex, speed;
         public int frames = 0, Fpa = 10;
         public double leftbound = 0, rightbound;
         public bool FlipEntity, attacking;
@@ -37,7 +37,6 @@ namespace WPFGame.Entities
             setSpeed();
             Currentdirection = Direction.idle;
             FlipEntity = false; attacking = false;
-            floor = (int)new StageGraphics().FloorPos.Y;
         }
 
         public abstract void setSpeed();

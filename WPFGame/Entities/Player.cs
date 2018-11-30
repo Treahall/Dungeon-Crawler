@@ -52,6 +52,7 @@ namespace WPFGame.Entities
             }
 
             //Stop falling at the bottom
+
             if (Position.Y > floor)
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
@@ -61,11 +62,17 @@ namespace WPFGame.Entities
                 Fpa = 10;
                 animation = new Animations().CharacterIdle;
             }
+            else if (Position.Y + Velocity.Y > floor && Position.Y != floor)
+            {
+                Position = new System.Numerics.Vector2( Position.X, (float)floor);
+                Velocity = new System.Numerics.Vector2(Velocity.X, 0);
+            }
             else
             {
                 force += 15;
                 Velocity += new System.Numerics.Vector2(0, force);
-            } 
+            }
+
         }
 
 
@@ -91,6 +98,15 @@ namespace WPFGame.Entities
             if (Keyboard.IsKeyDown(Key.Space) && !jumping)
             {
                 jumping = true;
+                if(attacking == false)
+                    AnimationIndex = 0;
+                animation = new Animations().CharacterJump;
+                Fpa = 5;
+            }
+
+            if (Keyboard.IsKeyDown(Key.V) && !attacking)
+            {
+                attacking = true;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
                 Fpa = 5;
@@ -106,7 +122,7 @@ namespace WPFGame.Entities
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
 
             //resets index when animation is changed.
-            if (PreviousDirection != Currentdirection) AnimationIndex = 0;
+            if (PreviousDirection != Currentdirection && !jumping && !attacking) AnimationIndex = 0;
 
             switch (Currentdirection)
             {
@@ -125,8 +141,15 @@ namespace WPFGame.Entities
                     FlipEntity = false;
                     break;
             }
-            if (jumping == true) RunJumpAlg();
-            //pushPositionX();
+            if (jumping) RunJumpAlg();
+
+            if (attacking)
+            {
+                animation = new Animations().CharacterAtk;
+                if (AnimationIndex >= new Animations().CharacterAtk.Count - 1) { attacking = false; Fpa = 10; }
+                
+            }
+
         }
 
         public override void GameTick(float millisecondsPassed)
