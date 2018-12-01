@@ -199,6 +199,11 @@
     <Resource Include="VisualAssets\Floors\floor_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_4.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_0.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_1.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_2.png" />
