@@ -16,7 +16,7 @@ namespace WPFGame.Entities
     {
         bool jumping;
         int jumpForce = -120, force;
-        int attackframes=0;
+        int attackframes;
 
         public Player() : base()
         {
@@ -84,37 +84,25 @@ namespace WPFGame.Entities
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
                 Currentdirection = Direction.right;
             // Idle
-            else if(!jumping && !attacking)
+            else if(!jumping)
                 Currentdirection = Direction.idle;
 
-            if (AnimationIndex == 5 && attacking == true)
-            {
-                attacking = false;
-                animation = new Animations().CharacterIdle;
-                AnimationIndex = 0;
-                Fpa = 10;
-                
-            }
-
             //sperated for independent jumping action
-            if (Keyboard.IsKeyDown(Key.Space) && !jumping )
+            if (Keyboard.IsKeyDown(Key.Space) && !jumping)
             {
                 jumping = true;
-                attacking = false;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
                 Fpa = 5;
             }
 
-            if (Keyboard.IsKeyDown(Key.V) && !attacking && !jumping)
+            if (Keyboard.IsKeyDown(Key.V) && !attacking)
             {
-                attacking = true;
                 attackframes = new Animations().CharacterAtk.Count;
+                attacking = true;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterAtk;
-                
                 Fpa = 5;
-                
             }
         }
 
@@ -148,7 +136,12 @@ namespace WPFGame.Entities
             }
             if (jumping) RunJumpAlg();
 
-            
+            if (attacking && attackframes == 0)
+            {
+                attacking = false;
+                AnimationIndex = 0;
+                Fpa = 10;
+            }
         }
 
         public override void GameTick(float millisecondsPassed)
