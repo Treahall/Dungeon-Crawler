@@ -199,6 +199,24 @@
     <Resource Include="VisualAssets\Floors\floor_1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Attack\HellHoundAttack_5.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_5.png" />
+    <Resource Include="VisualAssets\Floors\floor_3.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_0.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_2.png" />
