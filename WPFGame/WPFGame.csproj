@@ -157,16 +157,10 @@
     <Resource Include="VisualAssets\Actors\Player_Sprites\Run\PlayerRun_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Floors\floor_0.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_0.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_2.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualAssets\Backgrounds\BG_0.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_1.png" />
@@ -194,12 +188,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\BG_2.png" />
     <Resource Include="VisualAssets\Backgrounds\BG_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualAssets\Floors\floor_1.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\BG_0.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_0.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_1.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Run\HellHoundRun_2.png" />
@@ -217,7 +208,6 @@
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_3.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_4.png" />
     <Resource Include="VisualAssets\Actors\Enemies\HellHound\Idle\HellHoundIdle_5.png" />
-    <Resource Include="VisualAssets\Floors\floor_2.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_0.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_1.png" />
     <Resource Include="VisualAssets\Actors\Player_Sprites\Attack\player_atk_2.png" />
