@@ -15,7 +15,7 @@ namespace WPFGame.Entities
     public class Player : GameEntity
     {
         bool jumping;
-        int jumpForce = -120, force;
+        int jumpForce = -240, force;
 
         public Player() : base()
         {
@@ -52,7 +52,6 @@ namespace WPFGame.Entities
             }
 
             //Stop falling at the bottom
-
             if (Position.Y > floor)
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
@@ -64,13 +63,13 @@ namespace WPFGame.Entities
             }
             else if (Position.Y + Velocity.Y > floor && Position.Y != floor)
             {
-                Position = new System.Numerics.Vector2( Position.X, (float)floor);
+                Position = new System.Numerics.Vector2(Position.X, (float)floor);
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0);
             }
             else
             {
-                force += 15;
-                Velocity += new System.Numerics.Vector2(0, force);
+                force += 20;
+                Velocity = new System.Numerics.Vector2(Velocity.X, force);
             }
 
         }

@@ -30,13 +30,14 @@ namespace WPFGame.Worlds
             //loads the background
             BitmapImage bg = new BitmapImage(new Uri(new StageGraphics().Backgrounds[backgroundIndex], UriKind.Relative));
             WriteableBitmap bgWBM = new WriteableBitmap(source: bg);
+
             //loads the floor
             BitmapImage fl = new BitmapImage(new Uri(new StageGraphics().Floors[groundIndex], UriKind.Relative));
             WriteableBitmap flWBM = new WriteableBitmap(fl);
 
-            //Merges them and writes to the Window
-            bgWBM.Blit(new StageGraphics().FloorPos, flWBM, new Rect(new StageGraphics().FloorSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            //writes to the Window
             surface.Blit(new StageGraphics().BackgroundPos, bgWBM, new Rect(new StageGraphics().BackgroundSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(new StageGraphics().FloorPos, flWBM, new Rect(new StageGraphics().FloorSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
     }
 }
