@@ -12,9 +12,10 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
-        public int backgroundIndex, groundIndex, numMaps;
+        public int backgroundIndex, groundIndex, numMaps, PlayerXpos;
         public TimeSpan previousGameTick;
         public List<GameEntity> GameEntities { get; set; }
+        public GameEntity User;
         public Stopwatch GameTimer { get; }
         
         public World()
@@ -27,6 +28,7 @@ namespace WPFGame.Worlds
 
         public abstract void calculateNumMaps();
         public void AddEntity(GameEntity entity) { GameEntities.Add(entity); }
+        public void AddUser(GameEntity user) { User = user; }
         public void StartTimer() { GameTimer.Start(); }
 
         public float MillisecondsPassedSinceLastTick

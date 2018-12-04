@@ -26,8 +26,8 @@ namespace WPFGame
     {
         double H, W;
         int floor, positionX;
-        WriteableBitmap WindowBM;
-        World game;
+        WriteableBitmap surface;
+        GameEngine game;
 
         public MainWindow()
         {
@@ -47,19 +47,14 @@ namespace WPFGame
             Application.Current.Resources["WindowWidth"] = W;
             Application.Current.Resources["WindowHeight"] = H;
 
-            WindowBM = BitmapFactory.New((int)W, (int)H);
-            ScreenImage.Source = WindowBM;
+            surface = BitmapFactory.New((int)W, (int)H);
+            ScreenImage.Source = surface;
             floor = (int)(new StageGraphics().FloorPos.Y);
-            CreateWorld();
-            game.StartTimer();
             CompositionTarget.Rendering += NextFrameEvent;
         }
 
         private void NextFrameEvent(object sender, EventArgs e)
         {
-            WindowBM.Clear();
-            game.DrawStage(WindowBM);
-            game.GameTick();
 
             //records player x cord and gives it to all enemies
             foreach(GameEntity entity in game.GameEntities)
@@ -68,18 +63,7 @@ namespace WPFGame
                     positionX = (int)entity.Position.X;
                 else
                     entity.PlayerXpos = positionX;
-
-                entity.Draw(WindowBM);
             }
-        }
-      
-        private void CreateWorld()
-        {
-            game = new FightingWorld();
-            GameEntity entity = new Player();
-            game.AddEntity(entity);
-            entity = new WereWolf();
-            game.AddEntity(entity);
         }
     }
 }

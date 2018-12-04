@@ -15,10 +15,12 @@ namespace WPFGame.Entities
     public class Player : GameEntity
     {
         bool jumping;
-        int jumpForce = -240, force;
+        int jumpForce = 400, force;
+        public List<int> enemyPositions;
 
         public Player() : base()
         {
+            force = -jumpForce;
             animation = new Animations().CharacterIdle;
             AnimationIndex = 0;
             jumping = false;
@@ -51,25 +53,27 @@ namespace WPFGame.Entities
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
             }
 
+
             //Stop falling at the bottom
             if (Position.Y > floor)
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
                 Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
                 jumping = false; //stops jumping 
-                force = jumpForce;
+                force = -jumpForce;
                 Fpa = 10;
                 animation = new Animations().CharacterIdle;
             }
-            else if (Position.Y + Velocity.Y > floor && Position.Y != floor)
+            else if (force < jumpForce)
             {
-                Position = new System.Numerics.Vector2(Position.X, (float)floor);
-                Velocity = new System.Numerics.Vector2(Velocity.X, 0);
-            }
-            else
-            {
-                force += 20;
+                force += 15;
                 Velocity = new System.Numerics.Vector2(Velocity.X, force);
+            }
+            
+            if (force >= 0)
+            {
+                animation = new Animations().CharacterRun;
+                AnimationIndex = 0;
             }
 
         }
@@ -100,7 +104,7 @@ namespace WPFGame.Entities
                 if(attacking == false)
                     AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
-                Fpa = 5;
+                Fpa = 10;
             }
 
             if (Keyboard.IsKeyDown(Key.V) && !attacking)
@@ -108,7 +112,7 @@ namespace WPFGame.Entities
                 attacking = true;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
-                Fpa = 5;
+                Fpa = 10;
             }
         }
 

@@ -13,7 +13,7 @@ namespace WPFGame.Worlds
 {
     public class MenuWorld : World
     {
-        bool startGame = false;
+        public bool startGame = false;
 
         public MenuWorld() : base()
         {
