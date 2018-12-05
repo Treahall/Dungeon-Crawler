@@ -10,7 +10,7 @@ namespace WPFGame.Entities
     {
         public Skeleton() : base() { }
 
-        public override void setAnimations()
+        public override void LoadAnimations()
         {
             throw new NotImplementedException();
         }

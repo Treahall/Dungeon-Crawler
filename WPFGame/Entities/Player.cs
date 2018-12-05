@@ -22,14 +22,15 @@ namespace WPFGame.Entities
 
         public Player() : base()
         {
+            MyDirection = Direction.idle;
             enemyPositions = new List<int>();
             force = -jumpForce;
 
-            setAnimations();
+            LoadAnimations();
 
             jumping = false; falling = false;
             //Initial position
-            Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= GetSpriteHeight());
+            Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= (int)GetSpriteSize().Height);
         }
 
         public override void setSpeed()
@@ -42,7 +43,7 @@ namespace WPFGame.Entities
             base.Draw(surface);
         }
 
-        public override void setAnimations()
+        public override void LoadAnimations()
         {
             CurrentAnimation = new Animations().CharacterIdle;
             previousAnimation = new Animations().CharacterIdle;
@@ -94,16 +95,16 @@ namespace WPFGame.Entities
         {
             //Don't move (Left and right cancel out)
             if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right) && !jumping && !attacking)
-                Currentdirection = Direction.idle;
+                MyDirection = Direction.idle;
             //Move left
             else if (Keyboard.IsKeyDown(Key.Left) && Position.X > leftbound)
-                Currentdirection = Direction.left;
+                MyDirection = Direction.left;
             // Move right
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
-                Currentdirection = Direction.right;
+                MyDirection = Direction.right;
             // Idle
             else if(!jumping && !attacking)
-                Currentdirection = Direction.idle;
+                MyDirection = Direction.idle;
 
             //sperated for independent jumping action
             if (Keyboard.IsKeyDown(Key.Space) && !jumping)
@@ -127,7 +128,7 @@ namespace WPFGame.Entities
             if (!(Position.X >= leftbound && Position.X <= rightbound))
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
 
-            switch (Currentdirection)
+            switch (MyDirection)
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
@@ -143,18 +144,18 @@ namespace WPFGame.Entities
 
             if (attacking)
             {
-                if (AnimationIndex >= new Animations().CharacterAtk.Count - 1) { attacking = false; Fpa = 10; } 
+                if (AnimationIndex >= attackAnimation.Count - 1) { attacking = false; Fpa = 10; } 
             }
 
-            setanimation();
+            setAnimation();
 
         }
 
-        public void setanimation()
+        public override void setAnimation()
         {
             previousAnimation = CurrentAnimation;
 
-            switch (Currentdirection)
+            switch (MyDirection)
             {
                 case Direction.idle:
                         CurrentAnimation = idleAnimation;

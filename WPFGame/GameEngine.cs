@@ -25,10 +25,10 @@ namespace WPFGame
         {
             user = new Player();
             gameWorld = new FightingWorld();
-            //enemy = new WereWolf();
+            enemy = new WereWolf() { PlayerXpos = (int)user.Position.X};
 
             gameWorld.AddUser(user);
-            //gameWorld.AddEntity(enemy);
+            gameWorld.AddEntity(enemy);
             gameWorld.StartTimer();
         }
 

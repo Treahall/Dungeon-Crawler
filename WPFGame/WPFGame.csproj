@@ -163,16 +163,6 @@
     <Resource Include="VisualAssets\Actors\Player_Sprites\Jump\Jump_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_1.png" />
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_2.png" />
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_3.png" />
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_4.png" />
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_0.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -185,6 +175,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_0.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_1.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_2.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_3.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_4.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_R_5.png" />
     <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-00.png" />
     <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-01.png" />
     <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-02.png" />

@@ -12,14 +12,13 @@ namespace WPFGame.Entities
     {
         public WereWolf() : base()
         {
-            setAnimations();
         }
 
-        public override void setAnimations()
+        public override void LoadAnimations()
         {
             idleAnimation = new Animations().WereWIdle;
-            CurrentAnimation = new Animations().WereWIdle;
-            previousAnimation = new Animations().WereWIdle;
+            CurrentAnimation = new Animations().WereWRun;
+            previousAnimation = new Animations().WereWRun;
             runAnimation = new Animations().WereWRun;
             attackAnimation = new Animations().WereWAtk;
         }
@@ -27,13 +26,6 @@ namespace WPFGame.Entities
         public override void setSpeed()
         {
             speed = 175;
-            //setanimation to idle when I get it
-            setInitialPosition();
-        }
-
-        public override void SetVelocity()
-        {
-
         }
 
     }

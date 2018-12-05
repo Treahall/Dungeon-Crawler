@@ -10,7 +10,7 @@ namespace WPFGame.Entities
     {
         public Hound() : base() { }
 
-        public override void setAnimations()
+        public override void LoadAnimations()
         {
             throw new NotImplementedException();
         }
