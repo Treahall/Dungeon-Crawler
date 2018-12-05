@@ -29,7 +29,7 @@ namespace WPFGame.Entities
         public override void CalculateDirection()
         {
             //if difference in distance between player and enemy < 50
-            if (Math.Abs(Position.X - (PlayerXpos + 16)) <= 50)
+            if (Math.Abs(Position.X - (PlayerXpos)) <= 50)
             {
                 MyDirection = Direction.idle;
             }
