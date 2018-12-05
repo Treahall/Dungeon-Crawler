@@ -173,9 +173,6 @@
     <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -188,6 +185,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
+    <Resource Include="VisualAssets\Coin\Coin.png" />
+    <Resource Include="VisualAssets\Hearts\1heart.png" />
+    <Resource Include="VisualAssets\Hearts\2hearts.png" />
+    <Resource Include="VisualAssets\Hearts\3hearts.png" />
+    <Resource Include="VisualAssets\Hearts\4hearts.png" />
+    <Resource Include="VisualAssets\Hearts\5hearts.png" />
+    <Resource Include="VisualAssets\Hearts\dead.png" />
     <Resource Include="VisualAssets\Backgrounds\BG_2.png" />
     <Resource Include="VisualAssets\Backgrounds\BG_1.png" />
     <Resource Include="VisualAssets\Backgrounds\BG_0.png" />
