@@ -185,6 +185,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Door\door.png" />
     <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
     <Resource Include="VisualAssets\Coin\Coin.png" />
     <Resource Include="VisualAssets\Hearts\1heart.png" />
@@ -237,5 +238,6 @@
     <Content Include="AudioAssets\jump_woosh.wav" />
     <Content Include="AudioAssets\sword_swing.wav" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
