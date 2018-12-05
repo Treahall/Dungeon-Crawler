@@ -14,7 +14,7 @@ namespace WPFGame.Entities
 {
     public class Player : GameEntity
     {
-        bool jumping;
+        bool jumping, falling;
         int jumpForce = 400, force;
         public List<int> enemyPositions;
 
@@ -24,7 +24,7 @@ namespace WPFGame.Entities
             force = -jumpForce;
             animation = new Animations().CharacterIdle;
             AnimationIndex = 0;
-            jumping = false;
+            jumping = false; falling = false;
             //Initial position
             Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= GetSpriteHeight());
         }
@@ -60,9 +60,8 @@ namespace WPFGame.Entities
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
                 Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
-                jumping = false; //stops jumping 
+                jumping = false; falling = false; //stops jumping 
                 force = -jumpForce;
-                Fpa = 10;
                 animation = new Animations().CharacterIdle;
             }
             else if (force < jumpForce)
@@ -70,13 +69,14 @@ namespace WPFGame.Entities
                 force += 15;
                 Velocity = new System.Numerics.Vector2(Velocity.X, force);
             }
-            
             if (force >= 0)
             {
-                animation = new Animations().CharacterRun;
-                AnimationIndex = 0;
+                if(falling == false)
+                {
+                    falling = true;
+                    AnimationIndex = 0;
+                }
             }
-
         }
 
 
@@ -105,7 +105,6 @@ namespace WPFGame.Entities
                 if(attacking == false)
                     AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
-                Fpa = 10;
             }
 
             if (Keyboard.IsKeyDown(Key.V) && !attacking)
@@ -113,8 +112,9 @@ namespace WPFGame.Entities
                 attacking = true;
                 AnimationIndex = 0;
                 animation = new Animations().CharacterJump;
-                Fpa = 10;
+                Fpa = 5;
             }
+
         }
 
         public override void SetVelocity()
@@ -132,16 +132,16 @@ namespace WPFGame.Entities
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterIdle;
+                    if (!jumping || falling) { animation = new Animations().CharacterIdle; }
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterRun;
+                    if (!jumping || falling) { animation = new Animations().CharacterRun; }
                     FlipEntity = true;
                     break;
                 case Direction.right:
                     if (Position.X <= rightbound) Velocity = new System.Numerics.Vector2(speed, Velocity.Y);
-                    if (!jumping) animation = new Animations().CharacterRun;
+                    if (!jumping || falling) { animation = new Animations().CharacterRun; }
                     FlipEntity = false;
                     break;
             }
@@ -150,8 +150,7 @@ namespace WPFGame.Entities
             if (attacking)
             {
                 animation = new Animations().CharacterAtk;
-                if (AnimationIndex >= new Animations().CharacterAtk.Count - 1) { attacking = false; Fpa = 10; }
-                
+                if (AnimationIndex >= new Animations().CharacterAtk.Count - 1) { attacking = false; Fpa = 10; } 
             }
 
         }

@@ -6,7 +6,7 @@
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:local="clr-namespace:WPFGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="635.5" Width="800">
     
     <Grid Name="ScreenGrid">
         <Image Name="ScreenImage" Loaded="Screen_Loaded"></Image>

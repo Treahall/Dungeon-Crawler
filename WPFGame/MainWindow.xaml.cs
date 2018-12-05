@@ -25,7 +25,7 @@ namespace WPFGame
     public partial class MainWindow : Window
     {
         double H, W;
-        int floor, positionX;
+        int floor;
         WriteableBitmap surface;
         GameEngine game;
 

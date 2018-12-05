@@ -16,7 +16,7 @@ namespace WPFGame.Data
         public Double WindowWidth = (double)Application.Current.Resources["WindowWidth"];
         public Double WindowHeight = (double)Application.Current.Resources["WindowHeight"];
         public Size BackgroundSize = new Size((double)Application.Current.Resources["WindowWidth"], (double)Application.Current.Resources["WindowHeight"]);
-        public Point FloorPos = new Point(0, (float)(double)Application.Current.Resources["WindowHeight"] - 100);
+        public Point FloorPos = new Point(0, (float)(double)Application.Current.Resources["WindowHeight"] - 98);
         public Point BackgroundPos = new Point(0, 0);
 
         //Menu graphics stored as {background, floor}

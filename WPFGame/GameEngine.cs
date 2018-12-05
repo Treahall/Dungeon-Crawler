@@ -23,8 +23,8 @@ namespace WPFGame
         public void StartGame()
         {
             user = new Player();
-            gameWorld = new MenuWorld();
-            gameWorld.AddUser (user);
+            gameWorld = new FightingWorld();
+            gameWorld.AddUser(user);
             gameWorld.StartTimer();
         }
 
@@ -33,6 +33,8 @@ namespace WPFGame
             surface.Clear();
             gameWorld.DrawStage(surface);
             gameWorld.GameTick();
+
+            user.Draw(surface);
 
             foreach (GameEntity entity in gameWorld.GameEntities)
             {

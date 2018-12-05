@@ -47,6 +47,8 @@ namespace WPFGame.Worlds
 
         public void GameTick()
         {
+            User.GameTick(MillisecondsPassedSinceLastTick);
+
             foreach (var entity in GameEntities)
                 entity.GameTick(MillisecondsPassedSinceLastTick);
 
