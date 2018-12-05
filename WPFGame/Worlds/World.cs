@@ -12,7 +12,7 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
-        public int backgroundIndex, groundIndex, numMaps, PlayerXpos;
+        public int backgroundIndex, numMaps, PlayerXpos;
         public TimeSpan previousGameTick;
         public List<GameEntity> GameEntities { get; set; }
         public GameEntity User;
@@ -41,7 +41,6 @@ namespace WPFGame.Worlds
         {
             Random random = new Random();
             backgroundIndex = random.Next(numMaps);
-            groundIndex = random.Next(numMaps);
         }
 
         public abstract void DrawStage(WriteableBitmap surface);

@@ -12,7 +12,7 @@ namespace WPFGame
     class GameEngine
     {
         World gameWorld;
-        int UserXposition;
+        private int UserXposition;
         Player user;
 
         public GameEngine()
@@ -38,6 +38,8 @@ namespace WPFGame
             {
                 entity.Draw(surface);
             }
+
+            sharePositions();
         }
 
         public void sharePositions()
@@ -51,6 +53,7 @@ namespace WPFGame
             }
 
             gameWorld.PlayerXpos = (int)user.Position.X;
+            UserXposition = (int)user.Position.X;
         }
 
     }

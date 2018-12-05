@@ -20,6 +20,7 @@ namespace WPFGame.Entities
 
         public Player() : base()
         {
+            enemyPositions = new List<int>();
             force = -jumpForce;
             animation = new Animations().CharacterIdle;
             AnimationIndex = 0;

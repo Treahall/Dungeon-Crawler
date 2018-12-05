@@ -50,20 +50,16 @@ namespace WPFGame
             surface = BitmapFactory.New((int)W, (int)H);
             ScreenImage.Source = surface;
             floor = (int)(new StageGraphics().FloorPos.Y);
+
+            game = new GameEngine();
+            game.StartGame();
+
             CompositionTarget.Rendering += NextFrameEvent;
         }
 
         private void NextFrameEvent(object sender, EventArgs e)
         {
-
-            //records player x cord and gives it to all enemies
-            foreach(GameEntity entity in game.GameEntities)
-            {
-                if(entity is Player)
-                    positionX = (int)entity.Position.X;
-                else
-                    entity.PlayerXpos = positionX;
-            }
+            game.FrameEvents(surface);
         }
     }
 }

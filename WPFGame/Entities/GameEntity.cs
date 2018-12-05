@@ -56,10 +56,6 @@ namespace WPFGame.Entities
             Position += Velocity * (millisecondsPassed / 1000f);
         }
         
-
-
-
-
         //Entities draw themselves.
         public virtual void Draw(WriteableBitmap surface)
         {
