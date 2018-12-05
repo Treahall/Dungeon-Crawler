@@ -14,7 +14,7 @@ namespace WPFGame.Worlds
     {
         public int backgroundIndex, numMaps, PlayerXpos;
         public TimeSpan previousGameTick;
-        public List<GameEntity> GameEntities { get; set; }
+        public List<Enemy> GameEnemies { get; set; }
         public GameEntity User;
         public Stopwatch GameTimer { get; }
         
@@ -22,14 +22,28 @@ namespace WPFGame.Worlds
         {
             calculateNumMaps();
             GameTimer = new Stopwatch();
-            GameEntities = new List<GameEntity>();
+            GameEnemies = new List<Enemy>();
             CreateStageIndexes();
         }
 
         public abstract void calculateNumMaps();
-        public void AddEntity(GameEntity entity) { GameEntities.Add(entity); }
+        public void AddEnemy(Enemy entity) { GameEnemies.Add(entity); }
         public void AddUser(GameEntity user) { User = user; }
         public void StartTimer() { GameTimer.Start(); }
+
+        public void removeDeadEnemies()
+        {
+            List<Enemy> enemiesToRemove = new List<Enemy>();
+            foreach(Enemy entity in GameEnemies)
+            {
+                if (entity.health <= 0) enemiesToRemove.Add(entity);
+            }
+            foreach(Enemy enemy in enemiesToRemove)
+            {
+                GameEnemies.Remove(enemy);
+            }
+            
+        }
 
         public float MillisecondsPassedSinceLastTick
         {
@@ -49,8 +63,10 @@ namespace WPFGame.Worlds
         {
             User.GameTick(MillisecondsPassedSinceLastTick);
 
-            foreach (var entity in GameEntities)
+            foreach (var entity in GameEnemies)
                 entity.GameTick(MillisecondsPassedSinceLastTick);
+
+            removeDeadEnemies();
 
             previousGameTick = GameTimer.Elapsed;
         }

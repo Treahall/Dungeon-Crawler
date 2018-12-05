@@ -12,12 +12,25 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
-            throw new NotImplementedException();
+            damageindex = attackAnimation.Count / 2;
         }
 
         public override void setSpeed()
         {
             //speed = int.Parse(enemydata.GetString("HoundSpeed"));
+        }
+        public override int getAttackDistance()
+        {
+            return 50;
+        }
+
+        public override bool inAttackRange()
+        {
+            //if distance between user and enemy is less then attackDistance make inattackrange true / else false
+            if (Math.Abs(Position.X - theUser.Position.X) <= getAttackDistance())
+                return true;
+            else
+                return false;
         }
 
         public override void SetVelocity()

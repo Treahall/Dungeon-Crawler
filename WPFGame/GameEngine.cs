@@ -12,7 +12,6 @@ namespace WPFGame
     class GameEngine
     {
         World gameWorld;
-        private int UserXposition;
         Player user;
         Enemy enemy;
 
@@ -25,10 +24,10 @@ namespace WPFGame
         {
             user = new Player();
             gameWorld = new FightingWorld();
-            enemy = new WereWolf() { PlayerXpos = (int)user.Position.X};
+            enemy = new WereWolf() { theUser = user };
 
             gameWorld.AddUser(user);
-            gameWorld.AddEntity(enemy);
+            gameWorld.AddEnemy(enemy);
             gameWorld.StartTimer();
         }
 
@@ -38,28 +37,17 @@ namespace WPFGame
             gameWorld.DrawStage(surface);
             gameWorld.GameTick();
 
-            user.Draw(surface);
-
-            foreach (GameEntity entity in gameWorld.GameEntities)
+            foreach (Enemy enemy in gameWorld.GameEnemies)
             {
-                entity.Draw(surface);
+                enemy.Draw(surface);
             }
-
-            sharePositions();
+            user.Draw(surface);
+            shareEnemiesWithUser();
         }
 
-        public void sharePositions()
-        { 
-            user.enemyPositions.Clear();
-
-            foreach (GameEntity entity in gameWorld.GameEntities)
-            {
-                user.enemyPositions.Add((int)entity.Position.X);
-                entity.PlayerXpos = (int)user.Position.X;
-            }
-
-            gameWorld.PlayerXpos = (int)user.Position.X;
-            UserXposition = (int)user.Position.X;
+        public void shareEnemiesWithUser()
+        {
+            user.enemies = gameWorld.GameEnemies;
         }
 
     }

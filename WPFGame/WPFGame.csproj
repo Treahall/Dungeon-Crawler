@@ -90,7 +90,7 @@
     </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Hound.cs" />
-    <Compile Include="Entities\Skeleton.cs" />
+    <Compile Include="Entities\Mandrake.cs" />
     <Compile Include="Entities\WereWolf.cs" />
     <Compile Include="HelperClasses\Algorithms.cs" />
     <Compile Include="Entities\Player.cs" />

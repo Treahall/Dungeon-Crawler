@@ -45,13 +45,12 @@ namespace WPFGame.Data
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Idle/werewolf_idle_2.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Idle/werewolf_idle_3.png" };
         public readonly List<string> WereWAtk = new List<string> { "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_0.png",
-                                                "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_0.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_1.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_2.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_3.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_4.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_5.png",
-                                                "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_7.png"};
+                                                "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_6.png" };
 
         public readonly List<string> HoundRun = new List<string> {"../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_0.png",
             "../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_1.png",

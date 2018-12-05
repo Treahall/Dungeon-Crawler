@@ -19,8 +19,8 @@ namespace WPFGame.Entities
     {
         public int floor = (int)(new StageGraphics().FloorPos.Y);
 
-        public int health, healthstat, damage, damagestat, PlayerXpos, AnimationIndex = 0, AttackIndex, speed;
-        public int frames = 0, Fpa = 10;
+        public int health, damage, AnimationIndex = 0, AttackIndex, speed;
+        public int framecount = 0, Fpa = 10, attackingFpa = 5; //fpa is frames per animation.
         public double leftbound = 0, rightbound;
         public bool FlipEntity, attacking;
 
@@ -52,6 +52,7 @@ namespace WPFGame.Entities
         public abstract void SetVelocity(); //sets the velocity for the next movement.
         public abstract void LoadAnimations();
         public abstract void setAnimation();
+        public abstract void TakeDamage();
 
         public Size GetSpriteSize()
         {
@@ -66,6 +67,11 @@ namespace WPFGame.Entities
         //Called every frame, useses functions needed to update. //milliseconds passed = time since last execution.
         public virtual void GameTick(float millisecondsPassed)
         {
+            //set right bound for specific image
+            rightbound = new StageGraphics().WindowWidth - GetSpriteSize().Width;
+            //Calculate what floor should be.
+            floor = (int)(new StageGraphics().FloorPos.Y - GetSpriteSize().Height);
+            TakeDamage();
             SetVelocity();
             Position += Velocity * (millisecondsPassed / 1000f);
         }
@@ -74,13 +80,7 @@ namespace WPFGame.Entities
         public virtual void Draw(WriteableBitmap surface)
         {
             BitmapImage img = new BitmapImage(new Uri(CurrentAnimation[AnimationIndex], UriKind.Relative));
-            WriteableBitmap bm = new WriteableBitmap(img);
-
-            //Record image size in pixels
-            rightbound = new StageGraphics().WindowWidth - GetSpriteSize().Width;
-
-            //Calculate what floor should be.
-            floor = (int)(new StageGraphics().FloorPos.Y - GetSpriteSize().Height);
+            WriteableBitmap bm = new WriteableBitmap(img);            
 
             //merge image onto screen sepreated for flipped horizontally for left versions of animations.
             if (FlipEntity)
@@ -88,13 +88,14 @@ namespace WPFGame.Entities
             else
                 surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(GetSpriteSize()), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 
-            //Increases animation index every fpa frames 
+             //resets animation index to 0 if animation index + 1 is out of bounds
             if (AnimationIndex >= CurrentAnimation.Count - 1)
                 AnimationIndex = 0;
-            else if ((frames += 1) > Fpa)
+            //Increments animation index by 1 when framecount is less then fpa
+            else if ((framecount += 1) > Fpa)
             {
                 AnimationIndex += 1;
-                frames = 0;
+                framecount = 0;
             }
         }
     }

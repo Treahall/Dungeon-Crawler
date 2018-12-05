@@ -10,6 +10,9 @@ namespace WPFGame.Entities
 {
     public abstract class Enemy : GameEntity
     {
+        public Player theUser;
+        public int damageindex;
+
         public Enemy() : base()
         {
             LoadAnimations();
@@ -25,15 +28,29 @@ namespace WPFGame.Entities
             Position = new System.Numerics.Vector2(bounds[index], floor -= (int)GetSpriteSize().Height);
 
         }
+        public abstract int getAttackDistance();
+        public abstract bool inAttackRange();
+
+        public override void TakeDamage()
+        {
+            if (inAttackRange())
+            {
+                //if in range and the user is exactly mid attack then take damage and parry enemy attack
+                if (theUser.attacking && theUser.AnimationIndex == damageindex)
+                {
+                    health -= theUser.damage;
+                    attacking = false;
+                }
+            }
+        }
 
         public override void CalculateDirection()
         {
-            //if difference in distance between player and enemy < 50
-            if (Math.Abs(Position.X - (PlayerXpos)) <= 50)
+            if (inAttackRange())
             {
                 MyDirection = Direction.idle;
             }
-            else if ((Position.X - PlayerXpos) < 0)
+            else if ((Position.X - theUser.Position.X) < 0)
             {
                 MyDirection = Direction.right;
                 FlipEntity = false; 
@@ -47,7 +64,7 @@ namespace WPFGame.Entities
             if (MyDirection == Direction.idle && !attacking)
             {
                 attacking = true;
-                Fpa = 5;
+                Fpa = attackingFpa;
             }
         }
 
@@ -99,18 +116,15 @@ namespace WPFGame.Entities
             }
 
             if (attacking)
-            {
                 CurrentAnimation = attackAnimation;
-            }
 
-
-           if (previousAnimation != CurrentAnimation && !attacking) AnimationIndex = 0;
+           if (previousAnimation != CurrentAnimation && !attacking)
+                AnimationIndex = 0;
         }
 
         public override void GameTick(float millisecondsPassed)
         {
-            SetVelocity();
-            Position += Velocity * (millisecondsPassed / 1000f);
+            base.GameTick(millisecondsPassed);
         }
     }
 }

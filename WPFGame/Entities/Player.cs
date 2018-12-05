@@ -15,22 +15,43 @@ namespace WPFGame.Entities
     public class Player : GameEntity
     {
         bool jumping, falling;
-        int jumpForce = 400, force;
-        public List<int> enemyPositions;
+        int jumpForce = 400, force, maxhealth = 100, maxDamage = 10;
+        public List<Enemy> enemies;
         public List<string> jumpAnimation;
+        public List<int> attackDistances;
+        public int damageindex;
         
 
         public Player() : base()
         {
-            MyDirection = Direction.idle;
-            enemyPositions = new List<int>();
-            force = -jumpForce;
-
             LoadAnimations();
+            refreshStats();
+            MyDirection = Direction.idle;
+            enemies = new List<Enemy>();
+            force = -jumpForce;
 
             jumping = false; falling = false;
             //Initial position
             Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= (int)GetSpriteSize().Height);
+        }
+
+        //maxdamage divided by fpa of 5 so total damage over damageIndex eauals to maxdamage;
+        public void refreshStats() { health = maxhealth; damage = maxDamage/attackingFpa; }
+
+        public override void TakeDamage()
+        {
+            foreach(Enemy enemy in enemies)
+            {
+                if (enemy.inAttackRange())
+                {
+                    //if in range and the enemy is exactly mid attack then take damage and parry user attack
+                    if (enemy.attacking && enemy.AnimationIndex == damageindex)
+                    {
+                        health -= enemy.damage;
+                        attacking = false;
+                    }
+                }
+            }
         }
 
         public override void setSpeed()
@@ -51,6 +72,7 @@ namespace WPFGame.Entities
             attackAnimation = new Animations().CharacterAtk;
             runAnimation = new Animations().CharacterRun;
             jumpAnimation = new Animations().CharacterJump;
+            damageindex = attackAnimation.Count / 2;
         }
 
         public void RunJumpAlg()
@@ -115,7 +137,7 @@ namespace WPFGame.Entities
             if (Keyboard.IsKeyDown(Key.V) && !attacking)
             {
                 attacking = true;
-                Fpa = 5;
+                Fpa = attackingFpa;
             }
 
         }
