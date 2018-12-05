@@ -19,6 +19,7 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
+        public bool Leave = false, InChurch = false;
         public int backgroundIndex, numMaps;
         public TimeSpan previousGameTick;
         public List<Enemy> GameEnemies { get; set; }

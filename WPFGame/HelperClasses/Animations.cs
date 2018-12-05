@@ -133,8 +133,5 @@ namespace WPFGame.Data
             "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-03.png",
             "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-04.png"
         };
-
-
-
     }
 }

@@ -25,6 +25,11 @@ namespace WPFGame.Worlds
             numMaps = new StageGraphics().Backgrounds.Count;
         }
 
+        public void createExit(WriteableBitmap surface)
+        {
+            //draw Door
+            
+        }
         public override void DrawStage(WriteableBitmap surface)
         {
             //loads the background

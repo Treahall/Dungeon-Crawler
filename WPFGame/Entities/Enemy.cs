@@ -32,9 +32,24 @@ namespace WPFGame.Entities
         public abstract int getAttackDistance();
         public abstract bool inAttackRange();
 
+        public bool PlayerFacingMe()
+        {
+            //if player left and my pos is less then his
+            if (theUser.FlipEntity && Position.X < theUser.Position.X)
+            {
+                return true;
+            }
+            //if player is right and my pos is more then his
+            else if (!theUser.FlipEntity && Position.X >= theUser.Position.X)
+            {
+                return true;
+            }
+            else return false;
+        }
+
         public override void TakeDamage()
         {
-            if (inAttackRange())
+            if (inAttackRange() && PlayerFacingMe())
             {
                 //if in range and the user is exactly mid attack then take damage and parry enemy attack
                 if (theUser.attacking && theUser.AnimationIndex == damageindex)
