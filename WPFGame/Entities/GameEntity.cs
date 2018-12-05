@@ -64,15 +64,15 @@ namespace WPFGame.Entities
             else return new Size(0,0);
         }
 
-        //Called every frame, useses functions needed to update. //milliseconds passed = time since last execution.
+        //Called every frame, uses functions needed to update. //milliseconds passed = time since last execution.
         public virtual void GameTick(float millisecondsPassed)
         {
             //set right bound for specific image
             rightbound = new StageGraphics().WindowWidth - GetSpriteSize().Width;
-            //Calculate what floor should be.
-            floor = (int)(new StageGraphics().FloorPos.Y - GetSpriteSize().Height);
             TakeDamage();
             SetVelocity();
+            //Calculate what floor should be.
+            floor = (int)(new StageGraphics().FloorPos.Y - GetSpriteSize().Height);
             Position += Velocity * (millisecondsPassed / 1000f);
         }
         

@@ -104,6 +104,37 @@ namespace WPFGame.Data
             "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_5.png"
         };
 
+        public readonly  List<string> MandrakeAtk = new List<string>
+        {
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-00.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-01.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-02.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-03.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-04.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-05.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/attack/mandrake-attack-06.png"
+        };
+
+        public readonly List<string> MandrakeRun = new List<string>
+        {
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-00.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-01.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-02.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-03.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-04.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/run/mandrake-run-05.png"
+        };
+
+        public readonly List<string> MandrakeSpawn = new List<string>
+        {
+            "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-00.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-01.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-02.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-03.png",
+            "../../VisualAssets/Actors/Enemies/Mandrake/spawn/mandrake-show-04.png"
+        };
+
+
 
     }
 }

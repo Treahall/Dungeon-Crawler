@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using WPFGame.Data;
@@ -25,7 +26,7 @@ namespace WPFGame.Entities
             Random random = new Random();
             List<int> bounds = new List<int> { (int)leftbound,(int)( new StageGraphics().WindowWidth - GetSpriteSize().Width)}; //left/right
             int index = random.Next(2);
-            Position = new System.Numerics.Vector2(bounds[index], floor -= (int)GetSpriteSize().Height);
+            Position = new System.Numerics.Vector2(bounds[index], floor - (int)GetSpriteSize().Height);
 
         }
         public abstract int getAttackDistance();
@@ -125,6 +126,7 @@ namespace WPFGame.Entities
         public override void GameTick(float millisecondsPassed)
         {
             base.GameTick(millisecondsPassed);
+            Position = new Vector2(Position.X, floor);
         }
     }
 }

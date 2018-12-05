@@ -32,7 +32,7 @@ namespace WPFGame
         public void StartGame()
         {
 
-            enemy = new WereWolf() { theUser = user };
+            enemy = new Hound() { theUser = user };
             CurrentWorld = menuCreator.getWorld();
             CurrentWorld.AddEnemy(enemy);
             CurrentWorld.StartTimer();

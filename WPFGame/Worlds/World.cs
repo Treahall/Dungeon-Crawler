@@ -97,7 +97,7 @@ namespace WPFGame.Worlds
             get { return (float)(GameTimer.Elapsed - previousGameTick).TotalMilliseconds; }
         }
 
-        //gets index of random stage bg and floor.
+        //gets index of random stage bg
         public virtual void CreateStageIndexes()
         {
             Random random = new Random();

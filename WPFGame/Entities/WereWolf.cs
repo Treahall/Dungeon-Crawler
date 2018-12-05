@@ -13,7 +13,7 @@ namespace WPFGame.Entities
         public WereWolf() : base()
         {
             CurrentHealth = 50;
-            damage = 5/attackingFpa;
+            damage = (int)((double)10 / attackingFpa);
         }
 
         public override void LoadAnimations()
