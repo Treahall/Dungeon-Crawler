@@ -15,11 +15,11 @@ namespace WPFGame.Entities
     public class Player : GameEntity
     {
         bool jumping, falling;
-        int jumpForce = 400, force, maxhealth = 100, maxDamage = 10;
+        int jumpForce = 400, force, maxDamage = 10;
         public List<Enemy> enemies;
         public List<string> jumpAnimation;
         public List<int> attackDistances;
-        public int damageindex;
+        public int damageindex, MaxHealth = 100, coins = 100;
         
 
         public Player() : base()
@@ -35,8 +35,8 @@ namespace WPFGame.Entities
             Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= (int)GetSpriteSize().Height);
         }
 
-        //maxdamage divided by fpa of 5 so total damage over damageIndex eauals to maxdamage;
-        public void refreshStats() { health = maxhealth; damage = maxDamage/attackingFpa; }
+        //maxDamage divided by attackingFpa so total damage equals to maxDamage;
+        public void refreshStats() { CurrentHealth = MaxHealth; damage = maxDamage/attackingFpa; }
 
         public override void TakeDamage()
         {
@@ -47,7 +47,7 @@ namespace WPFGame.Entities
                     //if in range and the enemy is exactly mid attack then take damage and parry user attack
                     if (enemy.attacking && enemy.AnimationIndex == damageindex)
                     {
-                        health -= enemy.damage;
+                        CurrentHealth -= enemy.damage;
                         attacking = false;
                     }
                 }

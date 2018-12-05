@@ -38,7 +38,7 @@ namespace WPFGame.Entities
                 //if in range and the user is exactly mid attack then take damage and parry enemy attack
                 if (theUser.attacking && theUser.AnimationIndex == damageindex)
                 {
-                    health -= theUser.damage;
+                    CurrentHealth -= theUser.damage;
                     attacking = false;
                 }
             }

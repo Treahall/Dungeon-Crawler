@@ -22,9 +22,29 @@ namespace WPFGame.Data
         //Menu graphics stored as {background, floor}
         public List<string> MainMenuGraphics = new List<string> { "../../VisualAssets/Backgrounds/Main_Menu_BG.png"};
 
-        public List<string> Backgrounds = new List<string> { "../../VisualAssets/Backgrounds/BG_0.png",
-                                                             "../../VisualAssets/Backgrounds/BG_1.png",
-                                                             "../../VisualAssets/Backgrounds/BG_2.png"};
+        public List<string> Backgrounds = new List<string>
+        {
+            "../../VisualAssets/Backgrounds/BG_0.png",
+            "../../VisualAssets/Backgrounds/BG_1.png",
+            "../../VisualAssets/Backgrounds/BG_2.png"
+
+        };
+
+        public string EnterDungeonGraphic = "";
+        public string EnterChurchGraphic = "";
+        public string ChurchMenu = "";
+
+        public string coin = "../../VisualAssets/Coin/Coin.png";
+
+        public List<string> Hearts = new List<string>
+        {
+            "../../VisualAssets/Hearts/dead.png",
+            "../../VisualAssets/Hearts/1heart.png",
+            "../../VisualAssets/Hearts/2hearts.png",
+            "../../VisualAssets/Hearts/3hearts.png",
+            "../../VisualAssets/Hearts/4hearts.png",
+            "../../VisualAssets/Hearts/5hearts.png"
+        };
     }
 
 }

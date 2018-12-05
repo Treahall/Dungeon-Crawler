@@ -9,35 +9,42 @@ using WPFGame.Worlds;
 
 namespace WPFGame
 {
-    class GameEngine
+    public class GameEngine
     {
-        World gameWorld;
+        
+
+        public World CurrentWorld;
+
+        private WorldCreator menuCreator;
+        private WorldCreator dungeonCreator;
+        private RandomEnemyCreator RandomEnemy;
         Player user;
         Enemy enemy;
 
         public GameEngine()
         {
-
+            user = new Player();
+            menuCreator = new MenuCreator(user);
+            dungeonCreator = new DungeonCreator(user);
+            RandomEnemy = new RandomEnemyCreator();
         }
 
         public void StartGame()
         {
-            user = new Player();
-            gameWorld = new FightingWorld();
-            enemy = new WereWolf() { theUser = user };
 
-            gameWorld.AddUser(user);
-            gameWorld.AddEnemy(enemy);
-            gameWorld.StartTimer();
+            enemy = new WereWolf() { theUser = user };
+            CurrentWorld = menuCreator.getWorld();
+            CurrentWorld.AddEnemy(enemy);
+            CurrentWorld.StartTimer();
         }
 
         public void FrameEvents(WriteableBitmap surface)
         {
             surface.Clear();
-            gameWorld.DrawStage(surface);
-            gameWorld.GameTick();
+            CurrentWorld.DrawStage(surface);
+            CurrentWorld.GameTick();
 
-            foreach (Enemy enemy in gameWorld.GameEnemies)
+            foreach (Enemy enemy in CurrentWorld.GameEnemies)
             {
                 enemy.Draw(surface);
             }
@@ -47,7 +54,7 @@ namespace WPFGame
 
         public void shareEnemiesWithUser()
         {
-            user.enemies = gameWorld.GameEnemies;
+            user.enemies = CurrentWorld.GameEnemies;
         }
 
     }

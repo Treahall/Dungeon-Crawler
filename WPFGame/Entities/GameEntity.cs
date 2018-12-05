@@ -19,8 +19,8 @@ namespace WPFGame.Entities
     {
         public int floor = (int)(new StageGraphics().FloorPos.Y);
 
-        public int health, damage, AnimationIndex = 0, AttackIndex, speed;
-        public int framecount = 0, Fpa = 10, attackingFpa = 5; //fpa is frames per animation.
+        public int CurrentHealth, damage, AnimationIndex = 0, AttackIndex, speed;
+        public int FrameCount = 0, Fpa = 10, attackingFpa = 5; //fpa is frames per animation.
         public double leftbound = 0, rightbound;
         public bool FlipEntity, attacking;
 
@@ -82,20 +82,17 @@ namespace WPFGame.Entities
             BitmapImage img = new BitmapImage(new Uri(CurrentAnimation[AnimationIndex], UriKind.Relative));
             WriteableBitmap bm = new WriteableBitmap(img);            
 
-            //merge image onto screen sepreated for flipped horizontally for left versions of animations.
-            if (FlipEntity)
-                surface.Blit(new Point(Position.X, Position.Y), bm.Flip(new FlipMode()), new Rect(GetSpriteSize()), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
-            else
-                surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(GetSpriteSize()), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            //merge image onto screen separated for flipped horizontally for left versions of animations.
+            surface.Blit(new Point(Position.X, Position.Y), FlipEntity ? bm.Flip(new FlipMode()) : bm, new Rect(GetSpriteSize()), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 
-             //resets animation index to 0 if animation index + 1 is out of bounds
+            //resets animation index to 0 if animation index + 1 is out of bounds
             if (AnimationIndex >= CurrentAnimation.Count - 1)
                 AnimationIndex = 0;
-            //Increments animation index by 1 when framecount is less then fpa
-            else if ((framecount += 1) > Fpa)
+            //Increments animation index by 1 when FrameCount is less then fpa
+            else if ((FrameCount += 1) > Fpa)
             {
                 AnimationIndex += 1;
-                framecount = 0;
+                FrameCount = 0;
             }
         }
     }

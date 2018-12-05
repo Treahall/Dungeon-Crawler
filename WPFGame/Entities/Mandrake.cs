@@ -12,6 +12,7 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
+
             damageindex = attackAnimation.Count / 2;
         }
 

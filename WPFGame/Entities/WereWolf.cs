@@ -12,7 +12,7 @@ namespace WPFGame.Entities
     {
         public WereWolf() : base()
         {
-            health = 50;
+            CurrentHealth = 50;
             damage = 5/attackingFpa;
         }
 

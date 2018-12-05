@@ -33,6 +33,9 @@ namespace WPFGame.Worlds
 
             //writes to the Window
             surface.Blit(new StageGraphics().BackgroundPos, bgWBM, new Rect(new StageGraphics().BackgroundSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+
+            DisplayHearts(surface);
+            DisplayCoins(surface);
         }
     }
 }
