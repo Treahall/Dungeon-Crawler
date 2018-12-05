@@ -14,6 +14,7 @@ namespace WPFGame
         World gameWorld;
         private int UserXposition;
         Player user;
+        Enemy enemy;
 
         public GameEngine()
         {
@@ -24,7 +25,10 @@ namespace WPFGame
         {
             user = new Player();
             gameWorld = new FightingWorld();
+            //enemy = new WereWolf();
+
             gameWorld.AddUser(user);
+            //gameWorld.AddEntity(enemy);
             gameWorld.StartTimer();
         }
 

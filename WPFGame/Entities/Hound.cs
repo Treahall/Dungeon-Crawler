@@ -10,6 +10,11 @@ namespace WPFGame.Entities
     {
         public Hound() : base() { }
 
+        public override void setAnimations()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void setSpeed()
         {
             //speed = int.Parse(enemydata.GetString("HoundSpeed"));

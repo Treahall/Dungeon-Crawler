@@ -26,7 +26,12 @@ namespace WPFGame.Entities
         //Character size(pixels).
         public Size Mysize = new Size();
 
-        public List<string> animation = null;
+        public List<string> CurrentAnimation = null;
+        public List<string> previousAnimation = null;
+        public List<string> attackAnimation = null;
+        public List<string> runAnimation = null;
+        public List<string> idleAnimation = null;
+
         public enum Direction { left, right, idle }
         public Direction Currentdirection;
         public Direction PreviousDirection;
@@ -43,11 +48,12 @@ namespace WPFGame.Entities
         public Vector2 Position { get; set; } //Location of game entity. = (X, Y).
         public int GetSpriteHeight()
         {
-            if (animation != null) return new BitmapImage(new Uri(animation[AnimationIndex], UriKind.Relative)).PixelHeight; else return 0;
+            if (CurrentAnimation != null) return new BitmapImage(new Uri(CurrentAnimation[AnimationIndex], UriKind.Relative)).PixelHeight; else return 0;
         }
         public Vector2 Velocity { get; set; } //Velocity of game entity in pixels/sec. = (Change of X, Change of Y)
         public abstract void CalculateDirection();
         public abstract void SetVelocity(); //sets the velocity for the next movement.
+        public abstract void setAnimations();
 
         //Called every frame, useses functions needed to update. //milliseconds passed = time since last execution.
         public virtual void GameTick(float millisecondsPassed)
@@ -59,7 +65,7 @@ namespace WPFGame.Entities
         //Entities draw themselves.
         public virtual void Draw(WriteableBitmap surface)
         {
-            BitmapImage img = new BitmapImage(new Uri(animation[AnimationIndex], UriKind.Relative));
+            BitmapImage img = new BitmapImage(new Uri(CurrentAnimation[AnimationIndex], UriKind.Relative));
             WriteableBitmap bm = new WriteableBitmap(img);
 
             //Record image size in pixels
@@ -76,7 +82,7 @@ namespace WPFGame.Entities
                 surface.Blit(new Point(Position.X, Position.Y), bm, new Rect(Mysize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 
             //Increases animation index every fpa frames 
-            if (AnimationIndex >= animation.Count - 1)
+            if (AnimationIndex >= CurrentAnimation.Count - 1)
                 AnimationIndex = 0;
             else if ((frames += 1) > Fpa)
             {

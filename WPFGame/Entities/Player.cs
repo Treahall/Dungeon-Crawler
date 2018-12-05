@@ -17,13 +17,16 @@ namespace WPFGame.Entities
         bool jumping, falling;
         int jumpForce = 400, force;
         public List<int> enemyPositions;
+        public List<string> jumpAnimation;
+        
 
         public Player() : base()
         {
             enemyPositions = new List<int>();
             force = -jumpForce;
-            animation = new Animations().CharacterIdle;
-            AnimationIndex = 0;
+
+            setAnimations();
+
             jumping = false; falling = false;
             //Initial position
             Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= GetSpriteHeight());
@@ -37,6 +40,16 @@ namespace WPFGame.Entities
         public override void Draw(WriteableBitmap surface)
         {
             base.Draw(surface);
+        }
+
+        public override void setAnimations()
+        {
+            CurrentAnimation = new Animations().CharacterIdle;
+            previousAnimation = new Animations().CharacterIdle;
+            idleAnimation = new Animations().CharacterIdle;
+            attackAnimation = new Animations().CharacterAtk;
+            runAnimation = new Animations().CharacterRun;
+            jumpAnimation = new Animations().CharacterJump;
         }
 
         public void RunJumpAlg()
@@ -54,28 +67,24 @@ namespace WPFGame.Entities
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
             }
 
-
             //Stop falling at the bottom
             if (Position.Y > floor)
             {
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
                 Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
-                jumping = false; falling = false; //stops jumping 
+                jumping = false; //stops jumping 
+                falling = false; 
                 force = -jumpForce;
-                animation = new Animations().CharacterIdle;
             }
             else if (force < jumpForce)
             {
                 force += 15;
                 Velocity = new System.Numerics.Vector2(Velocity.X, force);
             }
+
             if (force >= 0)
             {
-                if(falling == false)
-                {
-                    falling = true;
-                    AnimationIndex = 0;
-                }
+                falling = true;
             }
         }
 
@@ -83,10 +92,8 @@ namespace WPFGame.Entities
 
         public override void CalculateDirection()
         {
-            PreviousDirection = Currentdirection;
-
             //Don't move (Left and right cancel out)
-            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right) && !jumping)
+            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right) && !jumping && !attacking)
                 Currentdirection = Direction.idle;
             //Move left
             else if (Keyboard.IsKeyDown(Key.Left) && Position.X > leftbound)
@@ -95,23 +102,18 @@ namespace WPFGame.Entities
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
                 Currentdirection = Direction.right;
             // Idle
-            else if(!jumping)
+            else if(!jumping && !attacking)
                 Currentdirection = Direction.idle;
 
             //sperated for independent jumping action
             if (Keyboard.IsKeyDown(Key.Space) && !jumping)
             {
                 jumping = true;
-                if(attacking == false)
-                    AnimationIndex = 0;
-                animation = new Animations().CharacterJump;
             }
 
             if (Keyboard.IsKeyDown(Key.V) && !attacking)
             {
                 attacking = true;
-                AnimationIndex = 0;
-                animation = new Animations().CharacterJump;
                 Fpa = 5;
             }
 
@@ -125,34 +127,58 @@ namespace WPFGame.Entities
             if (!(Position.X >= leftbound && Position.X <= rightbound))
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
 
-            //resets index when animation is changed.
-            if (PreviousDirection != Currentdirection && !jumping && !attacking) AnimationIndex = 0;
-
             switch (Currentdirection)
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping || falling) { animation = new Animations().CharacterIdle; }
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
-                    if (!jumping || falling) { animation = new Animations().CharacterRun; }
-                    FlipEntity = true;
                     break;
                 case Direction.right:
                     if (Position.X <= rightbound) Velocity = new System.Numerics.Vector2(speed, Velocity.Y);
-                    if (!jumping || falling) { animation = new Animations().CharacterRun; }
-                    FlipEntity = false;
                     break;
             }
             if (jumping) RunJumpAlg();
 
             if (attacking)
             {
-                animation = new Animations().CharacterAtk;
                 if (AnimationIndex >= new Animations().CharacterAtk.Count - 1) { attacking = false; Fpa = 10; } 
             }
 
+            setanimation();
+
+        }
+
+        public void setanimation()
+        {
+            previousAnimation = CurrentAnimation;
+
+            switch (Currentdirection)
+            {
+                case Direction.idle:
+                        CurrentAnimation = idleAnimation;
+                    break;
+                case Direction.left:
+                        CurrentAnimation = runAnimation;
+                    FlipEntity = true;
+                    break;
+                case Direction.right:
+                        CurrentAnimation = runAnimation;
+                    FlipEntity = false;
+                    break;
+            }
+
+            if (attacking)
+            {
+                CurrentAnimation = attackAnimation;
+            }
+            else if (jumping && !falling)
+            {
+                CurrentAnimation = jumpAnimation;
+            }
+
+            if (previousAnimation != CurrentAnimation) AnimationIndex = 0;
         }
 
         public override void GameTick(float millisecondsPassed)

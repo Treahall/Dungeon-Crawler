@@ -19,8 +19,8 @@ namespace WPFGame.Entities
         public void setInitialPosition()
         {
             Random random = new Random();
-            List<int> bounds = new List<int> { 0 - GetSpriteHeight(), (int)new StageGraphics().WindowWidth - 1}; //left/right
-            Position = new System.Numerics.Vector2((float)bounds[random.Next(bounds.Count)], floor -= GetSpriteHeight());
+            //List<int> bounds = new List<int> { GetSpriteHeight(), (int)new StageGraphics().WindowWidth - 1}; //left/right
+            Position = new System.Numerics.Vector2(200, 415);
         }
 
         public override void CalculateDirection()
@@ -34,17 +34,20 @@ namespace WPFGame.Entities
             }
             else if ((Position.X - PlayerXpos) < 0)
             {
-                Currentdirection = Direction.left;
+                Currentdirection = Direction.right;
                 FlipEntity = true;
             }
             else
             {
-                Currentdirection = Direction.right;
+                Currentdirection = Direction.left;
                 FlipEntity = false;
             }
         }
 
-        public override abstract void SetVelocity();
+        public override void SetVelocity()
+        {
+
+        }
 
         public override void GameTick(float millisecondsPassed)
         {
