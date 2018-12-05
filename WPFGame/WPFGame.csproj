@@ -185,6 +185,24 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-00.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-01.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-02.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-03.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-04.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-05.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\attack\mandrake-attack-06.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-00.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-01.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-02.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-03.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-04.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\run\mandrake-run-05.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\spawn\mandrake-show-00.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\spawn\mandrake-show-01.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\spawn\mandrake-show-02.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\spawn\mandrake-show-03.png" />
+    <Resource Include="VisualAssets\Actors\Enemies\Mandrake\spawn\mandrake-show-04.png" />
     <Resource Include="VisualAssets\Door\door.png" />
     <Resource Include="VisualAssets\Backgrounds\Main_Menu_BG.png" />
     <Resource Include="VisualAssets\Coin\Coin.png" />
