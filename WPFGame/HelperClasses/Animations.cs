@@ -52,7 +52,27 @@ namespace WPFGame.Data
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_4.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_5.png",
                                                 "../../VisualAssets/Actors/Enemies/Werewolf/Attack/werewolf_atk_7.png"};
-        //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
-        //List<string> CharacterLeft = new List<string> {"", "", "", "", "", "" };
+
+        public readonly List<string> HoundRun = new List<string> {"../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_0.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_1.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_2.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_3.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Run/HellHoundRun_4.png" };
+
+        public readonly List<string> HoundIdle = new List<string> { "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_0.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_1.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_2.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_3.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_4.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Idle/HellHoundIdle_5.png" };
+
+        public readonly List<string> HoundAtk = new List<string> { "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_0.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_1.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_2.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_3.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_4.png",
+            "../../VisualAssets/Actors/Enemies/HellHound/Attack/HellHoundAttack_5.png" };
+
+
     }
 }
