@@ -79,7 +79,7 @@ namespace WPFGame.Worlds
             if (Keyboard.IsKeyDown(Key.Escape))
             {
                 InChurch = false;
-            }C:\Users\Trever\source\repos\WPFGame\WPFGame\VisualAssets\Churchmenu\upgrade_menu.png
+            }
         }
 
         public void tryDrawChurchMenu(WriteableBitmap surface)
