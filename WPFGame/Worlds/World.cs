@@ -74,6 +74,8 @@ namespace WPFGame.Worlds
             surface.Blit(new Point(0, 0), hearts, new Rect(new Size((double)hearts.PixelWidth, (double)hearts.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern bool DeleteObject(IntPtr hObject);
         public void DisplayCoins(WriteableBitmap surface)
         {
             Bitmap coinBitmap = new Bitmap(new StageGraphics().coin);
@@ -85,19 +87,20 @@ namespace WPFGame.Worlds
                 g.DrawImage(coinBitmap, 0, 0, coinBitmap.Width, coinBitmap.Height);
                 g.DrawString(WorldUser.coins.ToString(), new Font("Times New Roman", 8), Brushes.Gold, new System.Drawing.Point(coinBitmap.Width, 5));
 
-                //Bitmap textImage = new Bitmap(coinBitmap.Width, coinBitmap.Height, g);
-                BitmapSource Imagesource = Imaging.CreateBitmapSourceFromHBitmap(coinAndText.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-                WriteableBitmap ImageBitmap = new WriteableBitmap(Imagesource);
-
-                surface.Blit(new Point(0, 40), ImageBitmap, new Rect(new Size((double)ImageBitmap.PixelWidth,
-                    (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
-
-                g.Dispose();
-            }
-            
-            
-
-            
+                IntPtr hBitmap = coinAndText.GetHbitmap();
+                try
+                {
+                    BitmapSource Imagesource = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero,
+                        Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    WriteableBitmap ImageBitmap = new WriteableBitmap(Imagesource);
+                    surface.Blit(new Point(0, 40), ImageBitmap, new Rect(new Size((double)ImageBitmap.PixelWidth,
+                        (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+                }
+                finally
+                {
+                    DeleteObject(hBitmap);
+                }
+            }   
         }
 
         public float MillisecondsPassedSinceLastTick
