@@ -19,7 +19,7 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
-        public bool Leave = false, InChurch = false, doordrawn = false;
+        public bool Leave = false, InChurch = false, DrawExitDoor = false;
         public int backgroundIndex, numMaps;
         public TimeSpan previousGameTick;
         public List<Enemy> GameEnemies { get; set; }
@@ -77,21 +77,27 @@ namespace WPFGame.Worlds
         public void DisplayCoins(WriteableBitmap surface)
         {
             Bitmap coinBitmap = new Bitmap(new StageGraphics().coin);
-            Bitmap coinAndText = new Bitmap(coinBitmap.Width + 30, coinBitmap.Height);
+            Bitmap coinAndText = new Bitmap(coinBitmap.Width + 50, coinBitmap.Height);
 
             using (Graphics g = Graphics.FromImage(coinAndText))
             {
                 g.Clear(System.Drawing.Color.Transparent);
                 g.DrawImage(coinBitmap, 0, 0, coinBitmap.Width, coinBitmap.Height);
                 g.DrawString(WorldUser.coins.ToString(), new Font("Times New Roman", 8), Brushes.Gold, new System.Drawing.Point(coinBitmap.Width, 5));
+
+                //Bitmap textImage = new Bitmap(coinBitmap.Width, coinBitmap.Height, g);
+                BitmapSource Imagesource = Imaging.CreateBitmapSourceFromHBitmap(coinAndText.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                WriteableBitmap ImageBitmap = new WriteableBitmap(Imagesource);
+
+                surface.Blit(new Point(0, 40), ImageBitmap, new Rect(new Size((double)ImageBitmap.PixelWidth,
+                    (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+
+                g.Dispose();
             }
             
-            //Bitmap textImage = new Bitmap(coinBitmap.Width, coinBitmap.Height, g);
-            BitmapSource Imagesource = Imaging.CreateBitmapSourceFromHBitmap(coinAndText.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            WriteableBitmap ImageBitmap = new WriteableBitmap(Imagesource);
+            
 
-            surface.Blit(new Point(0, 40), ImageBitmap ,new Rect(new Size((double)ImageBitmap.PixelWidth, 
-                (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            
         }
 
         public float MillisecondsPassedSinceLastTick

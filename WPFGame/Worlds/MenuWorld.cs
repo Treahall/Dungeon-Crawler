@@ -58,7 +58,7 @@ namespace WPFGame.Worlds
         {
             if (isNearDungeon() || isNearChurch() && !InChurch)
             {
-                BitmapImage adviceImage = new BitmapImage(new Uri(new StageGraphics().EnterDoorGraphic, UriKind.Relative));
+                BitmapImage adviceImage = new BitmapImage(new Uri(new StageGraphics().EnterDoorMessage, UriKind.Relative));
                 WriteableBitmap advice = new WriteableBitmap(adviceImage);
 
                 surface.Blit(new Point(new StageGraphics().WindowWidth/2 - advice.PixelWidth/2, new StageGraphics().WindowHeight - advice.PixelHeight), advice, 

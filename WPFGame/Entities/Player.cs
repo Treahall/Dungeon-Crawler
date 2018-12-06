@@ -130,7 +130,7 @@ namespace WPFGame.Entities
         public override void CalculateDirection()
         {
             //Don't move (Left and right cancel out)
-            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right) && !jumping && !attacking)
+            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right))
                 MyDirection = Direction.idle;
             //Move left
             else if (Keyboard.IsKeyDown(Key.Left) && Position.X > leftbound)
@@ -139,7 +139,7 @@ namespace WPFGame.Entities
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
                 MyDirection = Direction.right;
             // Idle
-            else if(!jumping && !attacking)
+            else 
                 MyDirection = Direction.idle;
 
             //sperated for independent jumping action
@@ -148,7 +148,7 @@ namespace WPFGame.Entities
                 jumping = true;
             }
 
-            if (Keyboard.IsKeyDown(Key.V) && !attacking)
+            if (Keyboard.IsKeyDown(Key.F) && !attacking)
             {
                 attacking = true;
                 Fpa = attackingFpa;

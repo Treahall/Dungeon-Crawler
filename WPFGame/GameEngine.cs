@@ -16,7 +16,7 @@ namespace WPFGame
         public WorldType currentworldtype;
         public World CurrentWorld;
 
-        private int level = 0;
+        public int level = 0, numEnemies = 0;
         private bool pause = false;
         private WorldCreator menuCreator;
         private WorldCreator dungeonCreator;
@@ -35,7 +35,6 @@ namespace WPFGame
         public void StartGame()
         {
             CurrentWorld = menuCreator.getWorld();
-            CurrentWorld.AddEnemy(RandomEnemy.getEnemy());
             currentworldtype = WorldType.menu;
             CurrentWorld.StartTimer();
         }
@@ -65,16 +64,31 @@ namespace WPFGame
                 {
                     CurrentWorld = dungeonCreator.getWorld();
                     currentworldtype = WorldType.dungeon;
+                    level += 1;
+                    numEnemies = level;
                 }
                 else
                 {
                     CurrentWorld = menuCreator.getWorld();
                     currentworldtype = WorldType.menu;
                 }
-
+                user.refreshStats();
                 CurrentWorld.StartTimer();
             }
 
+        }
+
+        public void dungeonWorldOperations()
+        {
+            if (numEnemies <= 0 && CurrentWorld.GameEnemies.Count <= 0)
+            {
+                CurrentWorld.DrawExitDoor = true;
+            }
+            else if(numEnemies > 0 && user.enemies.Count < 1)
+            {
+                CurrentWorld.AddEnemy(RandomEnemy.getEnemy());
+                numEnemies -= 1;
+            }
         }
 
         public void gameEngineTick()
@@ -82,6 +96,8 @@ namespace WPFGame
             ChangeWorldIfNeeded();
             tryTogglePause();
 
+            if(currentworldtype == WorldType.dungeon)
+                dungeonWorldOperations();
         }
 
         public void FrameEvents(WriteableBitmap surface)
@@ -91,8 +107,6 @@ namespace WPFGame
             if (!pause)
             {
                 gameEngineTick();
-
-            
                 surface.Clear();
                 CurrentWorld.DrawStage(surface);
                 CurrentWorld.GameTick();

@@ -30,26 +30,33 @@ namespace WPFGame.Entities
 
         }
         public abstract int getAttackDistance();
-        public abstract bool inAttackRange();
 
-        public bool PlayerFacingMe()
+        public bool inAttackRange()
         {
-            //if player left and my pos is less then his
-            if (theUser.FlipEntity && Position.X < theUser.Position.X)
-            {
+            if (Math.Abs(Position.X - theUser.Position.X) <= getAttackDistance())
                 return true;
-            }
-            //if player is right and my pos is more then his
-            else if (!theUser.FlipEntity && Position.X >= theUser.Position.X)
-            {
-                return true;
-            }
-            else return false;
+            else
+                return false;
         }
+
+        //public bool PlayerFacingMe()
+        //{
+        //    //if player left and my pos is less then his
+        //    if (theUser.FlipEntity && Position.X < theUser.Position.X)
+        //    {
+        //        return true;
+        //    }
+        //    //if player is right and my pos is more then his
+        //    else if (!theUser.FlipEntity && Position.X >= theUser.Position.X)
+        //    {
+        //        return true;
+        //    }
+        //    else return false;
+        //}
 
         public override void TakeDamage()
         {
-            if (inAttackRange() && PlayerFacingMe())
+            if (inAttackRange())
             {
                 //if in range and the user is exactly mid attack then take damage and parry enemy attack
                 if (theUser.attacking && theUser.AnimationIndex == damageindex)
@@ -60,9 +67,32 @@ namespace WPFGame.Entities
             }
         }
 
+        public bool closestEnemy()
+        {
+            if (theUser.enemies.Count == 0) return true;
+
+            Enemy closestEnemy = theUser.enemies[0];
+            //check if closest to enemy
+            foreach (Enemy entity in theUser.enemies)
+            {
+                if (Math.Abs(entity.Position.X - entity.Position.X) < Math.Abs(closestEnemy.Position.X - entity.Position.X))
+                {
+                    closestEnemy = entity;
+                }
+            }
+
+            if (this == closestEnemy)
+            {
+                return true;
+
+            }
+            else
+                return false;
+        }
+
         public override void CalculateDirection()
         {
-            if (inAttackRange())
+            if (!closestEnemy() || inAttackRange())
             {
                 MyDirection = Direction.idle;
             }
@@ -77,7 +107,7 @@ namespace WPFGame.Entities
                 FlipEntity = true;
             }
 
-            if (MyDirection == Direction.idle && !attacking)
+            if (MyDirection == Direction.idle && inAttackRange())
             {
                 attacking = true;
                 Fpa = attackingFpa;
