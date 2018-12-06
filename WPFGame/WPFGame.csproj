@@ -176,6 +176,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Churchmenu\upgrade_menu.png" />
     <Resource Include="VisualAssets\Door\Door_text_black.png" />
     <Resource Include="VisualAssets\Door\Door_text_white.png" />
     <Resource Include="VisualAssets\Actors\Enemies\Werewolf\Run\werewolf_run_0.png" />
