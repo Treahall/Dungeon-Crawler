@@ -176,6 +176,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="VisualAssets\Door\StartMenu.png" />
+    <Resource Include="VisualAssets\Door\You_Died.png" />
     <Resource Include="VisualAssets\Churchmenu\upgrade_menu.png" />
     <Resource Include="VisualAssets\Door\Door_text_black.png" />
     <Resource Include="VisualAssets\Door\Door_text_white.png" />

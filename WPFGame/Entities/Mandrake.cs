@@ -11,7 +11,7 @@ namespace WPFGame.Entities
     {
         public Mandrake() : base()
         {
-            CurrentHealth = 30;
+            CurrentHealth = 70;
             damage = (int)((double)2 / attackingFpa);
         }
 

@@ -31,6 +31,8 @@ namespace WPFGame.Data
         public static string EnterDoorMessage = "../../VisualAssets/Door/Door_text_white.png";
         public static string DoorGraphic = "../../VisualAssets/Door/door.png";
         public static string ChurchMenu = "../../VisualAssets/Churchmenu/upgrade_menu.png";
+        public static string YouDied = "../../VisualAssets/Door/You_Died.png";
+        public static string StartScreen = "../../VisualAssets/Door/StartMenu.png";
 
         public static string coin = "../../VisualAssets/Coin/Coin.png";
 

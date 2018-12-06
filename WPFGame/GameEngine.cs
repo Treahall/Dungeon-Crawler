@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WPFGame.Data;
 using WPFGame.Entities;
 using WPFGame.Worlds;
 
@@ -17,7 +20,7 @@ namespace WPFGame
         public World CurrentWorld;
 
         public int level = 0, numEnemies = 0;
-        private bool pause = false;
+        public bool pause = false, dead = false, restart = false;
         private WorldCreator menuCreator;
         private WorldCreator dungeonCreator;
         private RandomEnemyCreator RandomEnemy;
@@ -90,6 +93,27 @@ namespace WPFGame
             }
         }
 
+        public void deathOperations(WriteableBitmap surface)
+        {
+            pause = true;
+            CurrentWorld.GameTimer.Reset();
+            CurrentWorld.previousGameTick = CurrentWorld.GameTimer.Elapsed;
+            BitmapImage DeathMessageImage = new BitmapImage(new Uri(StageGraphics.YouDied, UriKind.Relative));
+            WriteableBitmap DeathMessage = new WriteableBitmap(DeathMessageImage);
+
+            surface.Blit(new Point(StageGraphics.WindowWidth/2 - DeathMessage.PixelWidth/2, StageGraphics.WindowHeight/2 - DeathMessage.PixelHeight/2), DeathMessage,
+                new Rect(new Size(DeathMessage.PixelWidth, DeathMessage.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha );
+
+            if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                Application.Current.Shutdown();
+            }
+            else if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                restart = true;
+            }
+        }
+
         public void gameEngineTick()
         {
             ChangeWorldIfNeeded();
@@ -101,7 +125,11 @@ namespace WPFGame
 
         public void FrameEvents(WriteableBitmap surface)
         {
-            
+
+            if (user.CurrentHealth <= 0 && currentworldtype == WorldType.dungeon)
+                dead = true;
+            if (dead == true)
+                deathOperations(surface);
 
             if (!pause)
             {

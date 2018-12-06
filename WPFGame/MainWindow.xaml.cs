@@ -28,6 +28,7 @@ namespace WPFGame
         int floor;
         WriteableBitmap surface;
         GameEngine game;
+        private bool gamestarted = false;
 
         public MainWindow()
         {
@@ -51,15 +52,29 @@ namespace WPFGame
             ScreenImage.Source = surface;
             floor = (int)(StageGraphics.FloorPos.Y);
 
+            BitmapImage Image = new BitmapImage(new Uri(StageGraphics.StartScreen, UriKind.Relative));
+            WriteableBitmap Message = new WriteableBitmap(Image);
+
+            surface.Blit(new Point(0,0), Message, new Rect(new Size(Message.PixelWidth, Message.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+
             game = new GameEngine();
-            game.StartGame();
 
             CompositionTarget.Rendering += NextFrameEvent;
         }
 
         private void NextFrameEvent(object sender, EventArgs e)
         {
-            game.FrameEvents(surface);
+            if (!gamestarted && Keyboard.IsKeyDown(Key.Enter))
+            {
+                game.StartGame();
+                gamestarted = true;
+            }
+            if (game.restart == true)
+            {
+                game = new GameEngine();
+                game.StartGame();
+            }
+            if(gamestarted) game.FrameEvents(surface);
         }
     }
 }

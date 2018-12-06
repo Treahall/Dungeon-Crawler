@@ -19,7 +19,7 @@ namespace WPFGame.Entities
         public List<Enemy> enemies;
         public List<string> jumpAnimation;
         public List<int> attackDistances;
-        public int damageindex, MaxHealth = 100, maxDamage = 10, coins = 0;
+        public int damageindex, MaxHealth = 100, MaxDamage = 10, coins = 0;
         
         public Player() : base()
         {
@@ -35,7 +35,7 @@ namespace WPFGame.Entities
         }
 
         //maxDamage divided by attackingFpa so total damage equals to maxDamage;
-        public void refreshStats() { CurrentHealth = MaxHealth; damage = maxDamage/attackingFpa; }
+        public void refreshStats() { CurrentHealth = MaxHealth; damage = MaxDamage/attackingFpa; }
 
         public bool enemyFacingMe(GameEntity entity)
         {

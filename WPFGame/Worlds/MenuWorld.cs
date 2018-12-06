@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,6 +21,7 @@ namespace WPFGame.Worlds
     {
         private int DungeonDoorCenter = 600;
         private int ChurchDoorCenter = 100;
+        private bool healthBought = false, damageBought = false;
 
         public MenuWorld() : base()
         {
@@ -82,6 +84,31 @@ namespace WPFGame.Worlds
             }
         }
 
+        public void inChurchOperations()
+        {
+            if (damageBought && Keyboard.IsKeyUp(Key.D)) damageBought = false;
+            if (healthBought && Keyboard.IsKeyUp(Key.H)) healthBought = false;
+
+            if (Keyboard.IsKeyDown(Key.H) && !healthBought)
+            {
+                if (WorldUser.coins > 0)
+                {
+                    WorldUser.MaxHealth += 1;
+                    WorldUser.coins -= 1;
+                    healthBought = true;
+                }
+            }
+            else if (Keyboard.IsKeyDown(Key.D) && !damageBought)
+            {
+                if (WorldUser.coins > 0)
+                {
+                    WorldUser.MaxDamage += 1;
+                    WorldUser.coins -= 1;
+                    damageBought = true;
+                }
+            }
+        }
+
         public void tryDrawChurchMenu(WriteableBitmap surface)
         {
             if (InChurch)
@@ -90,9 +117,8 @@ namespace WPFGame.Worlds
 
                 using (Graphics g = Graphics.FromImage(menu))
                 {
-                    //g.Clear(System.Drawing.Color.Transparent);
                     g.DrawString(WorldUser.MaxHealth.ToString(), new Font("Times New Roman", 34), System.Drawing.Brushes.Indigo, new System.Drawing.Point(75, 190));
-                    g.DrawString(WorldUser.maxDamage.ToString(), new Font("Times New Roman", 34), System.Drawing.Brushes.Indigo, new System.Drawing.Point(270, 190));
+                    g.DrawString(WorldUser.MaxDamage.ToString(), new Font("Times New Roman", 34), System.Drawing.Brushes.Indigo, new System.Drawing.Point(270, 190));
                     IntPtr hBitmap = menu.GetHbitmap();
                     try
                     {
@@ -131,6 +157,7 @@ namespace WPFGame.Worlds
         {
             base.GameTick();
             tryEnteringBuilding();
+            if(InChurch) inChurchOperations();
         }
     }
 }
