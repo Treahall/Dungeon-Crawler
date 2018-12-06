@@ -17,11 +17,11 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
-            idleAnimation = new Animations().HoundIdle;
-            CurrentAnimation = new Animations().HoundRun;
-            previousAnimation = new Animations().HoundRun;
-            runAnimation = new Animations().HoundRun;
-            attackAnimation = new Animations().HoundAtk;
+            idleAnimation = Animations.HoundIdle;
+            CurrentAnimation = Animations.HoundRun;
+            previousAnimation = Animations.HoundRun;
+            runAnimation = Animations.HoundRun;
+            attackAnimation = Animations.HoundAtk;
             damageindex = attackAnimation.Count / 2;
         }
 

@@ -18,11 +18,11 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
-            idleAnimation = new Animations().WereWIdle;
-            CurrentAnimation = new Animations().WereWRun;
-            previousAnimation = new Animations().WereWRun;
-            runAnimation = new Animations().WereWRun;
-            attackAnimation = new Animations().WereWAtk;
+            idleAnimation = Animations.WereWIdle;
+            CurrentAnimation = Animations.WereWRun;
+            previousAnimation = Animations.WereWRun;
+            runAnimation = Animations.WereWRun;
+            attackAnimation = Animations.WereWAtk;
             damageindex = attackAnimation.Count / 2;
         }
 

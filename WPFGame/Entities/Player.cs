@@ -31,7 +31,7 @@ namespace WPFGame.Entities
 
             jumping = false; falling = false;
             //Initial position
-            Position = new System.Numerics.Vector2((float)(new StageGraphics().WindowWidth/2), floor -= (int)GetSpriteSize().Height);
+            Position = new System.Numerics.Vector2((float)(StageGraphics.WindowWidth/2), floor -= (int)GetSpriteSize().Height);
         }
 
         //maxDamage divided by attackingFpa so total damage equals to maxDamage;
@@ -80,12 +80,12 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
-            CurrentAnimation = new Animations().CharacterIdle;
-            previousAnimation = new Animations().CharacterIdle;
-            idleAnimation = new Animations().CharacterIdle;
-            attackAnimation = new Animations().CharacterAtk;
-            runAnimation = new Animations().CharacterRun;
-            jumpAnimation = new Animations().CharacterJump;
+            CurrentAnimation = Animations.CharacterIdle;
+            previousAnimation = Animations.CharacterIdle;
+            idleAnimation = Animations.CharacterIdle;
+            attackAnimation = Animations.CharacterAtk;
+            runAnimation = Animations.CharacterRun;
+            jumpAnimation = Animations.CharacterJump;
             damageindex = attackAnimation.Count / 2;
         }
 
@@ -95,7 +95,7 @@ namespace WPFGame.Entities
             if (!(Position.X >= leftbound && Position.X <= rightbound))
             {
                 //if further right
-                if (Position.X >= new StageGraphics().WindowWidth/2)
+                if (Position.X >= StageGraphics.WindowWidth/2)
                      Position = new System.Numerics.Vector2((float)rightbound, Position.Y);
                 //if further left
                 else

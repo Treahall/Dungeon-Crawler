@@ -9,20 +9,18 @@ using System.Windows;
 
 namespace WPFGame.Data
 {
-    public class StageGraphics
+    public static class StageGraphics
     {
-        public StageGraphics() { }
-
-        public Double WindowWidth = (double)Application.Current.Resources["WindowWidth"];
-        public Double WindowHeight = (double)Application.Current.Resources["WindowHeight"];
-        public Size BackgroundSize = new Size((double)Application.Current.Resources["WindowWidth"], (double)Application.Current.Resources["WindowHeight"]);
-        public Point FloorPos = new Point(0, (float)(double)Application.Current.Resources["WindowHeight"] - 98);
-        public Point BackgroundPos = new Point(0, 0);
+        public static Double WindowWidth = 787;
+        public static Double WindowHeight = 600;
+        public static Size BackgroundSize = new Size(787, 600);
+        public static Point FloorPos = new Point(0, 600 - 98);
+        public static Point BackgroundPos = new Point(0, 0);
 
         //Menu graphics stored as {background, floor}
-        public List<string> MainMenuGraphics = new List<string> { "../../VisualAssets/Backgrounds/Main_Menu_BG.png"};
+        public static List<string> MainMenuGraphics = new List<string> { "../../VisualAssets/Backgrounds/Main_Menu_BG.png"};
 
-        public List<string> Backgrounds = new List<string>
+        public static List<string> Backgrounds = new List<string>
         {
             "../../VisualAssets/Backgrounds/BG_0.png",
             "../../VisualAssets/Backgrounds/BG_1.png",
@@ -30,13 +28,13 @@ namespace WPFGame.Data
 
         };
 
-        public string EnterDoorMessage = "../../VisualAssets/Door/Door_text_white.png";
-        public string DoorGraphic = "../../VisualAssets/Door/door.png";
-        public string ChurchMenu = "";
+        public static string EnterDoorMessage = "../../VisualAssets/Door/Door_text_white.png";
+        public static string DoorGraphic = "../../VisualAssets/Door/door.png";
+        public static string ChurchMenu = "../../VisualAssets/Churchmenu/upgrade_menu.png";
 
-        public string coin = "../../VisualAssets/Coin/Coin.png";
+        public static string coin = "../../VisualAssets/Coin/Coin.png";
 
-        public List<string> Hearts = new List<string>
+        public static List<string> Hearts = new List<string>
         {
             "../../VisualAssets/Hearts/dead.png",
             "../../VisualAssets/Hearts/1heart.png",

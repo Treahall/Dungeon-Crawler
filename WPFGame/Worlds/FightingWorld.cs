@@ -23,15 +23,15 @@ namespace WPFGame.Worlds
 
         public override void calculateNumMaps()
         {
-            numMaps = new StageGraphics().Backgrounds.Count;
+            numMaps = StageGraphics.Backgrounds.Count;
         }
 
         public void createExit(WriteableBitmap surface)
         {
             //draw Door
-            BitmapImage DoorImage = new BitmapImage(new Uri(new StageGraphics().DoorGraphic, UriKind.Relative));
+            BitmapImage DoorImage = new BitmapImage(new Uri(StageGraphics.DoorGraphic, UriKind.Relative));
             WriteableBitmap Door = new WriteableBitmap(DoorImage);
-            Doorpos = new Point(Door.PixelWidth/2, new StageGraphics().FloorPos.Y - (Door.PixelHeight + 1));
+            Doorpos = new Point(Door.PixelWidth/2, StageGraphics.FloorPos.Y - (Door.PixelHeight + 1));
             surface.Blit(Doorpos, Door, new Rect(new Size(Door.PixelWidth, Door.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
@@ -48,13 +48,13 @@ namespace WPFGame.Worlds
         public override void DrawStage(WriteableBitmap surface)
         {
             //loads the background
-            BitmapImage bg = new BitmapImage(new Uri(new StageGraphics().Backgrounds[backgroundIndex], UriKind.Relative));
+            BitmapImage bg = new BitmapImage(new Uri(StageGraphics.Backgrounds[backgroundIndex], UriKind.Relative));
             WriteableBitmap bgWBM = new WriteableBitmap(source: bg);
 
 
 
             //writes to the Window
-            surface.Blit(new StageGraphics().BackgroundPos, bgWBM, new Rect(new StageGraphics().BackgroundSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(StageGraphics.BackgroundPos, bgWBM, new Rect(StageGraphics.BackgroundSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 
             DisplayHearts(surface);
             DisplayCoins(surface);

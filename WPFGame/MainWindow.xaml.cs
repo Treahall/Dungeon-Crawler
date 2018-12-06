@@ -49,7 +49,7 @@ namespace WPFGame
 
             surface = BitmapFactory.New((int)W, (int)H);
             ScreenImage.Source = surface;
-            floor = (int)(new StageGraphics().FloorPos.Y);
+            floor = (int)(StageGraphics.FloorPos.Y);
 
             game = new GameEngine();
             game.StartGame();

@@ -22,7 +22,6 @@ namespace WPFGame
         private WorldCreator dungeonCreator;
         private RandomEnemyCreator RandomEnemy;
         Player user;
-        Enemy enemy;
 
         public GameEngine()
         {

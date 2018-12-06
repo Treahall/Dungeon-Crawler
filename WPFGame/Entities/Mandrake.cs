@@ -17,11 +17,11 @@ namespace WPFGame.Entities
 
         public override void LoadAnimations()
         {
-            idleAnimation = new Animations().MandrakeRun;
-            CurrentAnimation = new Animations().MandrakeSpawn;
-            previousAnimation = new Animations().MandrakeSpawn;
-            runAnimation = new Animations().MandrakeRun;
-            attackAnimation = new Animations().MandrakeAtk;
+            idleAnimation = Animations.MandrakeRun;
+            CurrentAnimation = Animations.MandrakeSpawn;
+            previousAnimation = Animations.MandrakeSpawn;
+            runAnimation = Animations.MandrakeRun;
+            attackAnimation = Animations.MandrakeAtk;
             damageindex = attackAnimation.Count / 2;
         }
 

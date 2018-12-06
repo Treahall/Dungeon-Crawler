@@ -17,7 +17,7 @@ namespace WPFGame.Entities
     //Is the abstract game entity and all entities should inherit from it.
     public abstract class GameEntity
     {
-        public int floor = (int)(new StageGraphics().FloorPos.Y);
+        public int floor = (int)(StageGraphics.FloorPos.Y);
 
         public int CurrentHealth, damage, AnimationIndex = 0, AttackIndex, speed;
         public int FrameCount = 0, Fpa = 10, attackingFpa = 5; //fpa is frames per animation.
@@ -68,11 +68,11 @@ namespace WPFGame.Entities
         public virtual void GameTick(float millisecondsPassed)
         {
             //set right bound for specific image
-            rightbound = new StageGraphics().WindowWidth - GetSpriteSize().Width;
+            rightbound = StageGraphics.WindowWidth - GetSpriteSize().Width;
             TakeDamage();
             SetVelocity();
             //Calculate what floor should be.
-            floor = (int)(new StageGraphics().FloorPos.Y - GetSpriteSize().Height);
+            floor = (int)(StageGraphics.FloorPos.Y - GetSpriteSize().Height);
             Position += Velocity * (millisecondsPassed / 1000f);
         }
         

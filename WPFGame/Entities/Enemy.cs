@@ -24,7 +24,7 @@ namespace WPFGame.Entities
         public void setInitialPosition()
         {
             Random random = new Random();
-            List<int> bounds = new List<int> { (int)leftbound,(int)( new StageGraphics().WindowWidth - GetSpriteSize().Width)}; //left/right
+            List<int> bounds = new List<int> { (int)leftbound,(int)( StageGraphics.WindowWidth - GetSpriteSize().Width)}; //left/right
             int index = random.Next(2);
             Position = new System.Numerics.Vector2(bounds[index], floor - (int)GetSpriteSize().Height);
 

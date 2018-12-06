@@ -68,7 +68,7 @@ namespace WPFGame.Worlds
                     indexToUse = i+1;
             }
             //create WriteableBitmap from image source
-            BitmapImage heartsImage = new BitmapImage(new Uri(new StageGraphics().Hearts[indexToUse], UriKind.Relative));
+            BitmapImage heartsImage = new BitmapImage(new Uri(StageGraphics.Hearts[indexToUse], UriKind.Relative));
             WriteableBitmap hearts = new WriteableBitmap(heartsImage);
             //Merge it to the surface at the top left
             surface.Blit(new Point(0, 0), hearts, new Rect(new Size((double)hearts.PixelWidth, (double)hearts.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
@@ -78,7 +78,7 @@ namespace WPFGame.Worlds
         public static extern bool DeleteObject(IntPtr hObject);
         public void DisplayCoins(WriteableBitmap surface)
         {
-            Bitmap coinBitmap = new Bitmap(new StageGraphics().coin);
+            Bitmap coinBitmap = new Bitmap(StageGraphics.coin);
             Bitmap coinAndText = new Bitmap(coinBitmap.Width + 50, coinBitmap.Height);
 
             using (Graphics g = Graphics.FromImage(coinAndText))
