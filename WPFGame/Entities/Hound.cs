@@ -33,14 +33,5 @@ namespace WPFGame.Entities
         {
             return 50;
         }
-
-        public override bool inAttackRange()
-        {
-            //if distance between user and enemy is less then attackDistance make inattackrange true / else false
-            if (Math.Abs(Position.X - theUser.Position.X) <= getAttackDistance())
-                return true;
-            else
-                return false;
-        }
     }
 }

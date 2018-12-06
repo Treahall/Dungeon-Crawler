@@ -93,7 +93,6 @@
     <Compile Include="Entities\Hound.cs" />
     <Compile Include="Entities\Mandrake.cs" />
     <Compile Include="Entities\WereWolf.cs" />
-    <Compile Include="HelperClasses\Algorithms.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="HelperClasses\Animations.cs" />
     <Compile Include="HelperClasses\StageGraphics.cs" />

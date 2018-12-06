@@ -18,7 +18,6 @@ namespace WPFGame.Worlds
 {
     public class MenuWorld : World
     {
-        public bool EnterDungeon = false, InChurch = false;
         private int DungeonDoorCenter = 600;
         private int ChurchDoorCenter = 100;
 
@@ -57,28 +56,22 @@ namespace WPFGame.Worlds
 
         public void tryWritingAdvice(WriteableBitmap surface)
         {
-            string adviceToWrite = null;
-            if(isNearDungeon())
-                adviceToWrite = new StageGraphics().EnterDungeonGraphic;
-            else if(isNearChurch())
-                adviceToWrite = new StageGraphics().EnterChurchGraphic;
-
-            if (adviceToWrite != null)
+            if (isNearDungeon() || isNearChurch() && !InChurch)
             {
-                BitmapImage adviceImage = new BitmapImage(new Uri(adviceToWrite, UriKind.Relative));
+                BitmapImage adviceImage = new BitmapImage(new Uri(new StageGraphics().EnterDoorMessage, UriKind.Relative));
                 WriteableBitmap advice = new WriteableBitmap(adviceImage);
 
-                surface.Blit(new Point(new StageGraphics().WindowWidth/2 , new StageGraphics().WindowHeight - 50), advice, new Rect(new Size((double)advice.PixelWidth, 
-                    (double)advice.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+                surface.Blit(new Point(new StageGraphics().WindowWidth/2 - advice.PixelWidth/2, new StageGraphics().WindowHeight - advice.PixelHeight), advice, 
+                    new Rect(new Size((double) advice.PixelWidth, (double) advice.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
             }
         }
 
         public void tryEnteringBuilding()
         {
-            if (Keyboard.IsKeyDown(Key.Enter))
+            if (Keyboard.IsKeyDown(Key.Enter) && !Leave && !InChurch)
             {
                 if(isNearDungeon())
-                    EnterDungeon = true;
+                    Leave = true;
                 if (isNearChurch())
                     InChurch = true;
             }
@@ -93,18 +86,18 @@ namespace WPFGame.Worlds
         {
             if (InChurch)
             {
-                BitmapImage menuImage = new BitmapImage(new Uri(new StageGraphics().ChurchMenu, UriKind.Relative));
+                //BitmapImage menuImage = new BitmapImage(new Uri(new StageGraphics().ChurchMenu, UriKind.Relative));
 
-                Graphics g = Graphics.FromImage(Image.FromFile(new StageGraphics().ChurchMenu));
-                Bitmap bm = new Bitmap(menuImage.PixelWidth, menuImage.PixelHeight, g);
-                BitmapSource bmsource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                //Graphics g = Graphics.FromImage(Image.FromFile(new StageGraphics().ChurchMenu));
+                //Bitmap bm = new Bitmap(menuImage.PixelWidth, menuImage.PixelHeight, g);
+                //BitmapSource bmsource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
-                WriteableBitmap menuBitmap = new WriteableBitmap(bmsource);
+                //WriteableBitmap menuBitmap = new WriteableBitmap(bmsource);
 
 
-                Point menuPos = new Point((int)new StageGraphics().WindowWidth/2 - menuBitmap.PixelWidth/2, (int)new StageGraphics().WindowHeight/2 - menuBitmap.PixelHeight/2 );
+                //Point menuPos = new Point((int)new StageGraphics().WindowWidth/2 - menuBitmap.PixelWidth/2, (int)new StageGraphics().WindowHeight/2 - menuBitmap.PixelHeight/2 );
 
-                source.Blit(menuPos, menuBitmap, new Rect(0,0,menuBitmap.PixelWidth,menuBitmap.PixelHeight), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+                //source.Blit(menuPos, menuBitmap, new Rect(0,0,menuBitmap.PixelWidth,menuBitmap.PixelHeight), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 
 
             }
@@ -121,8 +114,8 @@ namespace WPFGame.Worlds
 
             DisplayHearts(surface);
             DisplayCoins(surface);
-            //tryWritingAdvice(surface);
-            //tryDrawChurchMenu(surface);
+            tryWritingAdvice(surface);
+            tryDrawChurchMenu(surface);
 
         }
 
