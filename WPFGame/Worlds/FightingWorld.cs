@@ -36,6 +36,8 @@ namespace WPFGame.Worlds
             BitmapImage bg = new BitmapImage(new Uri(new StageGraphics().Backgrounds[backgroundIndex], UriKind.Relative));
             WriteableBitmap bgWBM = new WriteableBitmap(source: bg);
 
+
+
             //writes to the Window
             surface.Blit(new StageGraphics().BackgroundPos, bgWBM, new Rect(new StageGraphics().BackgroundSize), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
 

@@ -56,20 +56,14 @@ namespace WPFGame.Worlds
 
         public void tryWritingAdvice(WriteableBitmap surface)
         {
-            string adviceToWrite = null;
-            if(isNearDungeon())
-                adviceToWrite = new StageGraphics().EnterDungeonGraphic;
-            else if(isNearChurch())
-                adviceToWrite = new StageGraphics().EnterChurchGraphic;
+            if (isNearDungeon() || isNearChurch() && !InChurch)
+            {
+                BitmapImage adviceImage = new BitmapImage(new Uri(new StageGraphics().EnterDoorGraphic, UriKind.Relative));
+                WriteableBitmap advice = new WriteableBitmap(adviceImage);
 
-            //if (adviceToWrite != null)
-            //{
-            //    BitmapImage adviceImage = new BitmapImage(new Uri(adviceToWrite, UriKind.Relative));
-            //    WriteableBitmap advice = new WriteableBitmap(adviceImage);
-
-            //    surface.Blit(new Point(new StageGraphics().WindowWidth/2 , new StageGraphics().WindowHeight - 50), advice, new Rect(new Size((double)advice.PixelWidth, 
-            //        (double)advice.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
-            //}
+                surface.Blit(new Point(new StageGraphics().WindowWidth/2 - advice.PixelWidth/2, new StageGraphics().WindowHeight - advice.PixelHeight), advice, 
+                    new Rect(new Size((double) advice.PixelWidth, (double) advice.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            }
         }
 
         public void tryEnteringBuilding()

@@ -19,7 +19,7 @@ namespace WPFGame.Worlds
 {
     public abstract class World
     {
-        public bool Leave = false, InChurch = false;
+        public bool Leave = false, InChurch = false, doordrawn = false;
         public int backgroundIndex, numMaps;
         public TimeSpan previousGameTick;
         public List<Enemy> GameEnemies { get; set; }
@@ -83,14 +83,15 @@ namespace WPFGame.Worlds
             {
                 g.Clear(System.Drawing.Color.Transparent);
                 g.DrawImage(coinBitmap, 0, 0, coinBitmap.Width, coinBitmap.Height);
-                g.DrawString(WorldUser.coins.ToString(), new Font("Times New Roman", 5), Brushes.Black, new System.Drawing.Point(coinBitmap.Width, 8));
+                g.DrawString(WorldUser.coins.ToString(), new Font("Times New Roman", 8), Brushes.Gold, new System.Drawing.Point(coinBitmap.Width, 5));
             }
             
             //Bitmap textImage = new Bitmap(coinBitmap.Width, coinBitmap.Height, g);
             BitmapSource Imagesource = Imaging.CreateBitmapSourceFromHBitmap(coinAndText.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             WriteableBitmap ImageBitmap = new WriteableBitmap(Imagesource);
 
-            surface.Blit(new Point(0, 40), ImageBitmap ,new Rect(new Size((double)ImageBitmap.PixelWidth, (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+            surface.Blit(new Point(0, 40), ImageBitmap ,new Rect(new Size((double)ImageBitmap.PixelWidth, 
+                (double)ImageBitmap.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
         public float MillisecondsPassedSinceLastTick

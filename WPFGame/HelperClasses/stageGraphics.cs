@@ -30,8 +30,7 @@ namespace WPFGame.Data
 
         };
 
-        public string EnterDungeonGraphic = "";
-        public string EnterChurchGraphic = "";
+        public string EnterDoorGraphic = "../../VisualAssets/Door/Door_text_white.png";
         public string ChurchMenu = "";
 
         public string coin = "../../VisualAssets/Coin/Coin.png";
