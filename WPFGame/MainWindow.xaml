@@ -1,4 +1,5 @@
 ﻿<Window x:Class="WPFGame.MainWindow"
+        
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,7 @@
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:local="clr-namespace:WPFGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="635.5" Width="800">
     
     <Grid Name="ScreenGrid">
         <Image Name="ScreenImage" Loaded="Screen_Loaded"></Image>

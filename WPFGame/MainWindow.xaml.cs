@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFGame.Entities;
 using WPFGame.Worlds;
-using WPFGame.stageGraphics;
+using WPFGame.Data;
 using System.Resources;
 
 namespace WPFGame
@@ -26,52 +26,55 @@ namespace WPFGame
     {
         double H, W;
         int floor;
-        WriteableBitmap WindowBM;
-        GameWorld game;
-
+        WriteableBitmap surface;
+        GameEngine game;
+        private bool gamestarted = false;
 
         public MainWindow()
         {
             InitializeComponent();
+            
         }
-
 
         //functions as initializer for program
         private void Screen_Loaded(object sender, RoutedEventArgs e)
         {
+            
             //Get Window Height and Width
             W = (double)this.ScreenGrid.ActualWidth;
             H = (double)this.ScreenGrid.ActualHeight;
 
-            //store as a resource files and create bitmap on whole screen
+            //store as resource files.
             Application.Current.Resources["WindowWidth"] = W;
             Application.Current.Resources["WindowHeight"] = H;
-            WindowBM = BitmapFactory.New((int)W, (int)H);
-            ScreenImage.Source = WindowBM;
-            floor = (int)(new StageGraphic().FloorPos.Y);
-            CreateWorld();
-            game.StartTimer();
+
+            surface = BitmapFactory.New((int)W, (int)H);
+            ScreenImage.Source = surface;
+            floor = (int)(StageGraphics.FloorPos.Y);
+
+            BitmapImage Image = new BitmapImage(new Uri(StageGraphics.StartScreen, UriKind.Relative));
+            WriteableBitmap Message = new WriteableBitmap(Image);
+
+            surface.Blit(new Point(0,0), Message, new Rect(new Size(Message.PixelWidth, Message.PixelHeight)), Colors.White, WriteableBitmapExtensions.BlendMode.Alpha);
+
+            game = new GameEngine();
+
             CompositionTarget.Rendering += NextFrameEvent;
         }
 
         private void NextFrameEvent(object sender, EventArgs e)
         {
-            WindowBM.Clear();
-            game.DrawStage(WindowBM);
-
-            game.GameTick();
-
-            foreach(GameEntity entity in game.GameEntities)
+            if (!gamestarted && Keyboard.IsKeyDown(Key.Enter))
             {
-                entity.Draw(WindowBM);
+                game.StartGame();
+                gamestarted = true;
             }
-        }
-      
-        private void CreateWorld()
-        {
-            game = new GameWorld();
-            var player = new Player();
-            game.AddEntity(player);
+            if (game.restart == true)
+            {
+                game = new GameEngine();
+                game.StartGame();
+            }
+            if(gamestarted) game.FrameEvents(surface);
         }
     }
 }

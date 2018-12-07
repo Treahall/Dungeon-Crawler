@@ -1,35 +1,92 @@
 ﻿using System;
+using System.Resources;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WPFGame.Entities;
-using WPFGame.Animation;
-using WPFGame.stageGraphics;
+using WPFGame.Data;
 using static System.Windows.Media.Imaging.WriteableBitmapExtensions;
-
+using System.Collections;
 
 namespace WPFGame.Entities
 {
     public class Player : GameEntity
     {
-        //int speedstat, healthstat, damagestat; for stat changes.
-
-        bool jumping;
-        int jumpForce = -120, force;
-
+        bool jumping, falling;
+        int jumpForce = 400, force;
+        public List<Enemy> enemies;
+        public List<string> jumpAnimation;
+        public List<int> attackDistances;
+        public int damageindex, MaxHealth = 100, MaxDamage = 10, coins = 0;
+        
         public Player() : base()
         {
-            animation = animationLists.CharacterIdol;
-            AnimationIndex = 0;
-            jumping = false;
-            Position = new System.Numerics.Vector2((float)(graphics.WindowWidth/2), floor -= GetSpriteHeight());
+            LoadAnimations();
+            refreshStats();
+            MyDirection = Direction.idle;
+            enemies = new List<Enemy>();
+            force = -jumpForce;
+
+            jumping = false; falling = false;
+            //Initial position
+            Position = new System.Numerics.Vector2((float)(StageGraphics.WindowWidth/2), floor -= (int)GetSpriteSize().Height);
+        }
+
+        //maxDamage divided by attackingFpa so total damage equals to maxDamage;
+        public void refreshStats() { CurrentHealth = MaxHealth; damage = MaxDamage/attackingFpa; }
+
+        public bool enemyFacingMe(GameEntity entity)
+        {
+            //if entity is right and my pos is greater
+            if (entity.FlipEntity && Position.X >= entity.Position.X)
+            {
+                return true;
+            }
+            //if entity is left and my pos is less
+            else if (!entity.FlipEntity && Position.X < entity.Position.X)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public override void TakeDamage()
+        {
+            foreach(Enemy enemy in enemies)
+            {
+                if (enemy.inAttackRange() && enemyFacingMe(enemy))
+                {
+                    //if in range and the enemy is exactly mid attack then take damage and parry user attack
+                    if (enemy.attacking && enemy.AnimationIndex == damageindex)
+                    {
+                        CurrentHealth -= enemy.damage;
+                        attacking = false;
+                    }
+                }
+            }
+        }
+
+        public override void setSpeed()
+        {
+            speed = 240;
         }
 
         public override void Draw(WriteableBitmap surface)
         {
             base.Draw(surface);
+        }
+
+        public override void LoadAnimations()
+        {
+            CurrentAnimation = Animations.CharacterIdle;
+            previousAnimation = Animations.CharacterIdle;
+            idleAnimation = Animations.CharacterIdle;
+            attackAnimation = Animations.CharacterAtk;
+            runAnimation = Animations.CharacterRun;
+            jumpAnimation = Animations.CharacterJump;
+            damageindex = attackAnimation.Count / 2;
         }
 
         public void RunJumpAlg()
@@ -38,7 +95,7 @@ namespace WPFGame.Entities
             if (!(Position.X >= leftbound && Position.X <= rightbound))
             {
                 //if further right
-                if (Position.X >= graphics.WindowWidth/2)
+                if (Position.X >= StageGraphics.WindowWidth/2)
                      Position = new System.Numerics.Vector2((float)rightbound, Position.Y);
                 //if further left
                 else
@@ -53,77 +110,112 @@ namespace WPFGame.Entities
                 Velocity = new System.Numerics.Vector2(Velocity.X, 0); // sets vertical velocity to zero
                 Position = new System.Numerics.Vector2(Position.X, floor); // resets the base vertical position
                 jumping = false; //stops jumping 
-                force = jumpForce;
-                Fpa = 10;
-                animation = animationLists.CharacterIdol;
+                falling = false; 
+                force = -jumpForce;
             }
-            else
+            else if (force < jumpForce)
             {
                 force += 15;
-                Velocity += new System.Numerics.Vector2(0, force);
-            } 
+                Velocity = new System.Numerics.Vector2(Velocity.X, force);
+            }
+
+            if (force >= 0)
+            {
+                falling = true;
+            }
         }
 
-        enum Direction { left, right, idle}
-        Direction Currentdirection;
-        Direction PreviousDirection;
 
-        public void CalculateDirection()
+
+        public override void CalculateDirection()
         {
-            PreviousDirection = Currentdirection;
-
             //Don't move (Left and right cancel out)
-            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right) && !jumping)
-                Currentdirection = Direction.idle;
+            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Right))
+                MyDirection = Direction.idle;
             //Move left
             else if (Keyboard.IsKeyDown(Key.Left) && Position.X > leftbound)
-                Currentdirection = Direction.left;
+                MyDirection = Direction.left;
             // Move right
             else if (Keyboard.IsKeyDown(Key.Right) && Position.X < rightbound)
-                Currentdirection = Direction.right;
+                MyDirection = Direction.right;
             // Idle
-            else if(!jumping)
-                Currentdirection = Direction.idle;
+            else 
+                MyDirection = Direction.idle;
 
             //sperated for independent jumping action
             if (Keyboard.IsKeyDown(Key.Space) && !jumping)
             {
                 jumping = true;
-                AnimationIndex = 0;
-                animation = animationLists.CharacterJump;
-                Fpa = 5;
             }
+
+            if (Keyboard.IsKeyDown(Key.F) && !attacking)
+            {
+                attacking = true;
+                Fpa = attackingFpa;
+            }
+
         }
 
         public override void SetVelocity()
         {
             CalculateDirection();
 
-            //wall bounds for when jumping.
+            //Independent wall bounds for when jumping.
             if (!(Position.X >= leftbound && Position.X <= rightbound))
                 Velocity = new System.Numerics.Vector2(0, Velocity.Y);
 
-            //resets index when animation is changed.
-            if (PreviousDirection != Currentdirection) AnimationIndex = 0;
-
-            switch (Currentdirection)
+            switch (MyDirection)
             {
                 case Direction.idle:
                     Velocity = new System.Numerics.Vector2(0, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterIdol;
                     break;
                 case Direction.left:
                     if (Position.X >= leftbound) Velocity = new System.Numerics.Vector2(-speed, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterRun;
-                    FlipEntity = true;
                     break;
                 case Direction.right:
                     if (Position.X <= rightbound) Velocity = new System.Numerics.Vector2(speed, Velocity.Y);
-                    if (!jumping) animation = animationLists.CharacterRun;
+                    break;
+            }
+            if (jumping) RunJumpAlg();
+
+            if (attacking)
+            {
+                if (AnimationIndex >= attackAnimation.Count - 1) { attacking = false; Fpa = 10; } 
+            }
+
+            setAnimation();
+
+        }
+
+        public override void setAnimation()
+        {
+            previousAnimation = CurrentAnimation;
+
+            switch (MyDirection)
+            {
+                case Direction.idle:
+                        CurrentAnimation = idleAnimation;
+                    break;
+                case Direction.left:
+                        CurrentAnimation = runAnimation;
+                    FlipEntity = true;
+                    break;
+                case Direction.right:
+                        CurrentAnimation = runAnimation;
                     FlipEntity = false;
                     break;
             }
-            if (jumping == true) RunJumpAlg();
+
+            if (attacking)
+            {
+                CurrentAnimation = attackAnimation;
+            }
+            else if (jumping && !falling)
+            {
+                CurrentAnimation = jumpAnimation;
+            }
+
+            if (previousAnimation != CurrentAnimation) AnimationIndex = 0;
         }
 
         public override void GameTick(float millisecondsPassed)
